@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
+
 </head>
 
 <body>
@@ -32,10 +33,13 @@
                 <input type="text" placeholder="Search..." class="placeholder">
             </div>
             <div class="login">
-                <a href="#">Login</a>
+                <a href="/src/login.html">Login</a>
             </div>
             <div class="alert">
-                <a href="#">Emergency Alert</a>
+                <button class="emergency-button">
+                <i class="fas fa-ambulance"></i>
+                Emergency
+            </button>
             </div>
             <div class="lang">
                 <a href="#">EN</a>
@@ -45,27 +49,243 @@
         </nav>
     </header>
     <main>
-        <section class="hero">
-            <div class="hero-content">
 
-                <p>Your trusted companion for medical assistance.</p>
+        <div class="hospital-banner">
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Modern Hospital Facility">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Friendly Medical Staff">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Advanced Medical Technology">
+                    </div>
+                </div>
 
+                <div class="slider-arrow prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider-arrow next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
             </div>
-        </section>
 
-        <section class="features">
-            <div class="feature">
-
-                <p>We are here to help you anytime, anywhere.</p>
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <div>
+                    <div class="hospital-name">MediCare General Hospital</div>
+                    <div class="hospital-tagline">Excellence in Healthcare Since 1985</div>
+                </div>
             </div>
 
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">Open Hours</span>
+                        <span class="contact-value">24/7 Service</span>
+                    </div>
+                </div>
 
-        </section>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">Location</span>
+                        <span class="contact-value">123 Health Avenue, Medical City</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <span class="contact-label">Emergency Line</span>
+                        <span class="contact-value">(555) 123-HELP</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="banner-content">
+                <div class="container">
+                    <h1>Your Health is Our Priority</h1>
+                    <p>At MediCare General Hospital, we provide comprehensive healthcare services with state-of-the-art technology and a compassionate team of medical professionals. Our commitment to excellence has made us a trusted healthcare provider for
+                        over three decades.</p>
+                    <div class="cta-buttons">
+                        <button class="cta-button primary-button">
+                        <i class="fas fa-calendar-check"></i> Book an Appointment
+                    </button>
+                        <button class="cta-button secondary-button">
+                        <i class="fas fa-stethoscope"></i> Our Services
+                   
+                    </div>
+                </div>
+            </section>
+
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Patients Treated Annually</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Medical Professionals</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Emergency Care</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Slider functionality
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevArrow = document.querySelector('.slider-arrow.prev');
+            const nextArrow = document.querySelector('.slider-arrow.next');
+
+            let currentSlide = 0;
+            const slideCount = slides.length;
 
 
+            function initSlider() {
+                updateSlider();
+
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateSlider();
+                }, 5000);
+            }
+
+
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+
+            prevArrow.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSlider();
+            });
+
+            nextArrow.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            });
+
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+
+
+            document.querySelector('.primary-button').addEventListener('click', function() {
+                alert('Redirecting to appointment booking system...');
+            });
+
+            document.querySelector('.secondary-button').addEventListener('click', function() {
+                alert('Showing our medical services...');
+            });
+
+            document.querySelector('.emergency-button').addEventListener('click', function() {
+                alert('Emergency services contacted. Help is on the way!');
+            });
+
+
+            window.addEventListener('DOMContentLoaded', initSlider);
+        </script>
+<div class="overview">
+    <div class="E-service" >
+        <div class="service1">
+            <h3>E-SERVICES</h3>
+            <h5>Quality Care, Anywhere, Anytime</h5>
+        </div>
+        <div class="img">
+            <img src="/assets/e-service.png" alt="">
+        </div>
+    </div>
+    <div class="health chechup">
+        <div class="check1">
+            <h3>HEALTH CHECKUP</h3>
+            
+        </div>
+        <div class="img1">
+            <img src="/assets/healthcheckup.png" alt="">
+        </div>
+    </div>
+    <div class="hospitals">
+        <div class="check2">
+            <h3>FIND HOSPITALS</h3>
+            <h5>Health Needs Under One Roof</h5>
+        </div>
+        <div class="img2">
+            <img src="/assets/hospitals.png" alt="">
+
+    </div>
+    <div class="test&Services">
+        <div class="check3">
+            <h3>TEST & SERVICES</h3>
+            <h5>Comprehensive Care, Exceptional Service</h5>
+        </div>
+        <div class="img3">
+            <img src="/assets/test.png" alt="">
+        </div>
+    </div>
+    <div class="news">
+       
+    
+            <img src="/assets/news.jpg" alt="">
+        
+    </div>
+    
+</div>
     </main>
+
+
+
     <footer></footer>
 
 </body>
+<script>
+    document.querySelector('.emergency-button').addEventListener('click', function() {
+        alert('Emergency services contacted. Help is on the way!');
+    });
+
+    document.querySelector('.primary-button').addEventListener('click', function() {
+        alert('Redirecting to appointment booking system...');
+    });
+
+    document.querySelector('.secondary-button').addEventListener('click', function() {
+        alert('Showing our medical services...');
+    });
+</script>
 
 </html>
