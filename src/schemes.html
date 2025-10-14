@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Schemes Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a6bb3, #0d4d8a);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(13, 77, 138, 0.8), rgba(13, 77, 138, 0.9)), url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff7e5f;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #ff6b4a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .schemes-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0d4d8a;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #ff7e5f;
+            margin: 10px auto;
+        }
+        
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .scheme-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .scheme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .card-header i {
+            font-size: 1.8rem;
+        }
+        
+        .students .card-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .ncc .card-header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .faculty .card-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .citizens .card-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .card-body h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .card-body ul {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .card-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f1f1;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .card-body li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-body li i {
+            color: #2ecc71;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .features {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .contact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #1a6bb3, #0d4d8a);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact p {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto 28px;
+            gap: 16px;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+        
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #37a3e8, #2b7fd0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+
+        </div>
+        <div class="container">
+
+            <div class="topbar">
+                <div class="brand">
+
+                    <div class="logo">
+                        <a href="./index.html">MH</a>
+                    </div>
+                    <div>
+                        <div style="font-weight:700;color:#0b4e7a">Mediassist</div>
+                        <div style="font-size:12px;color:var(--muted)">Health Portal</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#schemes">Schemes</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" class="btn">Apply Now</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Healthcare Schemes for Everyone</h2>
+            <p>Discover comprehensive healthcare schemes designed specifically for college students, NCC cadets, faculty members, and citizens. Quality healthcare made accessible to all.</p>
+            <a href="#schemes" class="btn">Explore Schemes</a>
+        </div>
+    </section>
+
+    <section id="schemes" class="schemes-section">
+        <div class="container">
+            <h2 class="section-title">Available Healthcare Schemes</h2>
+            <div class="schemes-grid">
+                <div class="scheme-card students">
+                    <div class="card-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h2>College Students</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Specialized Health Plans</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive health insurance at subsidized rates</li>
+                            <li><i class="fas fa-check-circle"></i> Mental health counseling services</li>
+                            <li><i class="fas fa-check-circle"></i> Annual health check-up camps</li>
+                            <li><i class="fas fa-check-circle"></i> Discounts on dental and vision care</li>
+                            <li><i class="fas fa-check-circle"></i> Sports injury coverage</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="scheme-card ncc">
+                    <div class="card-header">
+                        <i class="fas fa-user-shield"></i>
+                        <h2>NCC Cadets</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Exclusive Benefits</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Specialized trauma and emergency care</li>
+                            <li><i class="fas fa-check-circle"></i> Adventure training injury coverage</li>
+                            <li><i class="fas fa-check-circle"></i> Priority access to military hospitals</li>
+                            <li><i class="fas fa-check-circle"></i> Annual fitness assessment programs</li>
+                            <li><i class="fas fa-check-circle"></i> Counseling for stress management</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="scheme-card faculty">
+                    <div class="card-header">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h2>Faculty Members</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Comprehensive Coverage</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Family health insurance plans</li>
+                            <li><i class="fas fa-check-circle"></i> Preventive health screenings</li>
+                            <li><i class="fas fa-check-circle"></i> Maternity and childcare benefits</li>
+                            <li><i class="fas fa-check-circle"></i> Chronic disease management programs</li>
+                            <li><i class="fas fa-check-circle"></i> Wellness and lifestyle coaching</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="scheme-card citizens">
+                    <div class="card-header">
+                        <i class="fas fa-users"></i>
+                        <h2>General Citizens</h2>
+                    </div>
+                    <div class="card-body">
+                        <h3>Affordable Healthcare</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Government-sponsored health schemes</li>
+                            <li><i class="fas fa-check-circle"></i> Subsidized treatments for critical illnesses</li>
+                            <li><i class="fas fa-check-circle"></i> Senior citizen healthcare packages</li>
+                            <li><i class="fas fa-check-circle"></i> Free vaccination drives</li>
+                            <li><i class="fas fa-check-circle"></i> Community health awareness programs</li>
+                        </ul>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Healthcare Schemes</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Comprehensive Coverage</h3>
+                    <p>Our schemes provide extensive medical coverage including hospitalization, diagnostics, and treatments.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Affordable Premiums</h3>
+                    <p>We offer healthcare solutions at subsidized rates to make quality healthcare accessible to all.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Quick Claim Processing</h3>
+                    <p>Our streamlined processes ensure fast and hassle-free claim settlements.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hospital-user"></i>
+                    <h3>Wide Network</h3>
+                    <p>Access to a vast network of hospitals and healthcare providers across the country.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>Have questions about our healthcare schemes? Our team is here to help you choose the right plan for your needs.</p>
+            <a href="#" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Healthcare Schemes</h3>
+                    <ul>
+                        <li><a href="#">College Students</a></li>
+                        <li><a href="#">NCC Cadets</a></li>
+                        <li><a href="#">Faculty Members</a></li>
+                        <li><a href="#">General Citizens</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@healthcareschemes.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Healthcare Schemes Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

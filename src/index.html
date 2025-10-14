@@ -8,46 +8,125 @@
     <link rel="icon" type="image/jpg" href="/assets/webicon.jpg">
     <link rel="stylesheet" href="/src/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="Google" content="notranslate">
+
 
 
 
 </head>
+<!-- Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr,ta',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <body>
 
     <header>
         <nav>
-            <div class="logo">
-                <img src="/assets/webicon.jpg" alt="Logo">
-            </div>
-            <div class="nav">
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
+
+            <h3>Medassist</h3>
+
+
+
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/index.html">Home Page</a>
+                        <a href="#">Student & NCC Cadets</a>
+                        <a href="#">Faculty Utilities</a>
+                        <a href="#">Citizen Medical Help</a>
+                        <a href="/src/dashboard.html">Google Dashboard</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Services <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Technology Expertise</a>
+                        <a href="https://pharmeasy.in/#">Buy Medicine</a>
+                        <a href="#">Disease Prediction</a>
+                        <a href="#">Privacy & Police</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">About <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/schemes.html">Schemes</a>
+                        <a href="/src/blog.html">Blogs</a>
+                        <a href="#">Wall of Love (Reviews)</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/AboutUs.html">About Us</a>
+                        <a href="https://ehr.meditech.com/careers">Career Opportunities</a>
+                        <a href="/src/contactUs.html">Contact Us</a>
+                        <a href="/src/info.html">Info & Help</a>
+                    </div>
+                </li>
+            </ul>
+
             <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass" class="search_icon"></i>
-                <input type="text" placeholder="Search..." class="placeholder">
-            </div>
-            <div class="login">
-                <a href="/src/login.html">Login</a>
-            </div>
-            <div class="alert">
-                <button class="emergency-button">
-                <i class="fas fa-ambulance"></i>
-                Emergency
-            </button>
-            </div>
-            <div class="lang">
-                <a href="#">EN</a>
-
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." />
             </div>
 
+            <div class="login"><a href="/src/login.html" style="color:inherit;text-decoration:none;">Login</a></div>
+            <button class="emergency-button" onclick="openEmergencyPopup()">
+
+<i class="fas fa-ambulance"></i>
+Emergency
+</button>
+
+            <!-- ✅ Multi-Language Dropdown -->
+            <div class="lang dropdown">
+                <a href="#">EN <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content" style="right:0;left:auto;">
+                    <a href="#" onclick="changeLang('en')">English</a>
+                    <a href="#" onclick="changeLang('hi')">हिन्दी (Hindi)</a>
+                    <a href="#" onclick="changeLang('mr')">मराठी (Marathi)</a>
+                    <a href="#" onclick="changeLang('ta')">தமிழ் (Tamil)</a>
+                </div>
+            </div>
         </nav>
     </header>
+
+    <script>
+        // Same JS makes dropdowns work on touch/tap  
+        document.querySelectorAll('.dropdown > a').forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') e.preventDefault();
+                const li = this.parentElement;
+                const open = li.classList.contains('show');
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+                if (!open) li.classList.add('show');
+                const onDoc = (ev) => {
+                    if (!li.contains(ev.target)) {
+                        li.classList.remove('show');
+                        document.removeEventListener('click', onDoc);
+                    }
+                };
+                document.addEventListener('click', onDoc);
+            });
+        });
+        document.addEventListener('keyup', e => {
+            if (e.key === 'Escape') document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+        });
+    </script>
+
     <main>
 
         <div class="hospital-banner">
@@ -223,69 +302,167 @@
             window.addEventListener('DOMContentLoaded', initSlider);
         </script>
 <div class="overview">
-    <div class="E-service" >
-        <div class="service1">
-            <h3>E-SERVICES</h3>
-            <h5>Quality Care, Anywhere, Anytime</h5>
-        </div>
-        <div class="img">
-            <img src="/assets/e-service.png" alt="">
-        </div>
+  <div class="E-service box">
+    <div class="text">
+      <h3>E-SERVICES</h3>
+      <h5>Quality Care, Anywhere, Anytime</h5>
     </div>
-    <div class="health chechup">
-        <div class="check1">
-            <h3>HEALTH CHECKUP</h3>
-            
-        </div>
-        <div class="img1">
-            <img src="/assets/healthcheckup.png" alt="">
-        </div>
+    <div class="img">
+      <img src="/assets/e-service.png" alt="E-Services">
     </div>
-    <div class="hospitals">
-        <div class="check2">
-            <h3>FIND HOSPITALS</h3>
-            <h5>Health Needs Under One Roof</h5>
-        </div>
-        <div class="img2">
-            <img src="/assets/hospitals.png" alt="">
+  </div>
 
+  <div class="healthcheckup box">
+    <div class="img">
+      <img src="/assets/healthcheckup.png" alt="Health Checkup">
     </div>
-    <div class="test&Services">
-        <div class="check3">
-            <h3>TEST & SERVICES</h3>
-            <h5>Comprehensive Care, Exceptional Service</h5>
+    <div class="text">
+      <h3>HEALTH CHECKUP</h3>
+    </div>
+  </div>
+
+  <div class="hospitals box">
+    <div class="text">
+      <h3>FIND HOSPITALS</h3>
+      <h5>Health Needs Under One Roof</h5>
+    </div>
+    <div class="img">
+      <img src="/assets/hospitals.png" alt="Hospitals">
+    </div>
+  </div>
+
+  <div class="testServices box">
+    <div class="text">
+      <h3>TEST & SERVICES</h3>
+      <h5>Comprehensive Care, Exceptional Service</h5>
+    </div>
+    <div class="img">
+      <img src="/assets/test.png" alt="Tests">
+    </div>
+  </div>
+</div>
+        <div class="last-news ">
+            <img src="/assets/news.jpg" alt="Last News">
         </div>
-        <div class="img3">
-            <img src="/assets/test.png" alt="">
-        </div>
+
+
+        <div class="video-slider">
+  <h2>Our Videos</h2>
+  <div class="slider-track">
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/watch?v=ia1MNtiOvKo" title="Video 1" allowfullscreen></iframe>
+      <p>Understanding Hypertension — Dr. Ajay Agarwal</p>
     </div>
-    <div class="news">
-       
-    
-            <img src="/assets/news.jpg" alt="">
-        
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/watch?v=lbUHGe_RuLw" title="Video 2" allowfullscreen></iframe>
+      <p>Breast Cancer Awareness — Dr. Nisha Sharma</p>
     </div>
-    
+
+    <div class="video-card">
+      <iframe src="hhttps://www.youtube.com/watch?v=QhqXgcCM9Kk" title="Video 3" allowfullscreen></iframe>
+      <p>Heart Health Tips — Dr. Rahul Verma</p>
+    </div>
+
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/watch?v=1MHnv36twNY" title="Video 4" allowfullscreen></iframe>
+      <p>Diabetes Explained — Dr. Meeta Singh</p>
+    </div>
+
+    <!-- Duplicate same videos for infinite effect -->
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/watch?v=ia1MNtiOvKo" title="Video 1" allowfullscreen></iframe>
+      <p>Understanding Hypertension — Dr. Ajay Agarwal</p>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/watch?v=lbUHGe_RuLw" title="Video 2" allowfullscreen></iframe>
+      <p>Breast Cancer Awareness — Dr. Nisha Sharma</p>
+    </div>
+  </div>
 </div>
     </main>
 
 
 
-    <footer></footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Healthcare Schemes</h3>
+                    <ul>
+                        <li><a href="#">College Students</a></li>
+                        <li><a href="#">NCC Cadets</a></li>
+                        <li><a href="#">Faculty Members</a></li>
+                        <li><a href="#">General Citizens</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/src/index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@Medassisthealthcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Medassist healthcare portal . All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
-<script>
-    document.querySelector('.emergency-button').addEventListener('click', function() {
-        alert('Emergency services contacted. Help is on the way!');
-    });
+<!-- Emergency Popup -->
+<div id="emergency-popup" class="popup-overlay">
+    <div class="popup-box">
+        <h2>🚨 Emergency Help</h2>
+        <p>Select an action below:</p>
+        <div class="popup-actions">
+            <button onclick="window.location.href='tel:108'">🚑 Call Ambulance</button>
+                        <button onclick="findHospital()">🏥 Find Nearest Hospital</button>
+                        <button onclick="window.location.href='tel:100'">📞 Contact Police</button>
+                    </div>
+                    <button class="close-btn" onclick="closeEmergencyPopup()">Close</button>
+                </div>
+        </div>
 
-    document.querySelector('.primary-button').addEventListener('click', function() {
-        alert('Redirecting to appointment booking system...');
-    });
+        <script>
+            function changeLang(lang) {
+                const select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.value = lang;
+                    select.dispatchEvent(new Event('change'));
+                } else {
+                    alert('Language switch not ready yet. Please wait a second and try again.');  
+                }
+            }
+        </script>
 
-    document.querySelector('.secondary-button').addEventListener('click', function() {
-        alert('Showing our medical services...');
-    });
-</script>
+        <script>
+            function openEmergencyPopup() {
+                document.getElementById('emergency-popup').style.display = 'flex';
+            }
+
+            function closeEmergencyPopup() {
+                document.getElementById('emergency-popup').style.display = 'none';
+            }
+
+            function findHospital() {
+                // Opens nearby hospitals on Google Maps  
+                window.open('https://www.google.com/maps/search/nearby+hospitals', '_blank');
+            }
+        </script>
+
+
+
 
 </html>

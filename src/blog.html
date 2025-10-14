@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediAssist Hospital Blog</title>
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #184887;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Header Styles */
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2d8a47;
+            color: white;
+        }
+        /* Main Content */
+        
+        .main-content {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .blog-section {
+            flex: 2;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            color: var(--dark);
+        }
+        /* Blog Posts */
+        
+        .blog-post {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .post-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .blog-post:hover .post-image img {
+            transform: scale(1.05);
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .post-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .post-excerpt {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        .read-more {
+            font-weight: 600;
+        }
+        /* Sidebar */
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-list,
+        .recent-posts {
+            list-style: none;
+        }
+        
+        .categories-list li,
+        .recent-posts li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .categories-list li:last-child,
+        .recent-posts li:last-child {
+            border-bottom: none;
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        /* Newsletter */
+        
+        .newsletter {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .newsletter h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .main-content {
+                flex-direction: column;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav ul li {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+            .newsletter-form,
+            .search-form {
+                flex-direction: column;
+            }
+            .newsletter-input,
+            .newsletter-btn,
+            .search-input,
+            .search-btn {
+                width: 100%;
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <!-- MediAssist Logo -->
+                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="80" rx="10" fill="#1a73e8" />
+                        <circle cx="50" cy="40" r="15" fill="white" />
+                        <path d="M35 60 L65 60 L65 80 L35 80 Z" fill="white" />
+                        <path d="M45 60 L45 70 L55 70 L55 60" fill="#1a73e8" />
+                        <text x="50" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">MediAssist</text>
+                    </svg>
+                    <h1>MediAssist Hospital</h1>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>info@mediassist.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Health & Wellness Blog</h2>
+            <p>Stay informed with the latest health tips, medical news, and wellness advice from our team of healthcare professionals.</p>
+            <a href="#" class="btn">Subscribe to Our Newsletter</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Blog Section -->
+            <section class="blog-section">
+                <h2 class="section-title">Latest Articles</h2>
+
+                <!-- Blog Post 1 -->
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Heart">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>June 15, 2023</span>
+                            <span>By Dr. Sarah Johnson</span>
+                            <span>Cardiology</span>
+                        </div>
+                        <h3 class="post-title">10 Ways to Keep Your Heart Healthy</h3>
+                        <p class="post-excerpt">Heart disease remains a leading cause of death worldwide. Discover simple lifestyle changes that can significantly improve your cardiovascular health and reduce your risk of heart problems.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mental Health">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>June 10, 2023</span>
+                            <span>By Dr. Michael Chen</span>
+                            <span>Psychiatry</span>
+                        </div>
+                        <h3 class="post-title">Managing Stress in Today's Fast-Paced World</h3>
+                        <p class="post-excerpt">Chronic stress can have serious impacts on both mental and physical health. Learn effective techniques to manage stress and improve your overall wellbeing.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-post">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nutrition">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span>June 5, 2023</span>
+                            <span>By Nutritionist Emily Wilson</span>
+                            <span>Nutrition</span>
+                        </div>
+                        <h3 class="post-title">The Mediterranean Diet: Benefits and Meal Ideas</h3>
+                        <p class="post-excerpt">The Mediterranean diet has been consistently ranked as one of the healthiest eating patterns. Explore its benefits and get practical meal ideas you can incorporate into your daily life.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Search Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Search</h3>
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="Search articles...">
+                        <button type="submit" class="search-btn">🔍</button>
+                    </form>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">Cardiology</a> (12)</li>
+                        <li><a href="#">Pediatrics</a> (8)</li>
+                        <li><a href="#">Nutrition</a> (15)</li>
+                        <li><a href="#">Mental Health</a> (10)</li>
+                        <li><a href="#">Preventive Care</a> (7)</li>
+                        <li><a href="#">Women's Health</a> (9)</li>
+                    </ul>
+                </div>
+
+                <!-- Recent Posts Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Recent Posts</h3>
+                    <ul class="recent-posts">
+                        <li><a href="#">Understanding COVID-19 Variants</a></li>
+                        <li><a href="#">The Importance of Regular Health Check-ups</a></li>
+                        <li><a href="#">Exercise Tips for Busy Professionals</a></li>
+                        <li><a href="#">Managing Diabetes Through Diet</a></li>
+                        <li><a href="#">Sleep Hygiene: Tips for Better Rest</a></li>
+                    </ul>
+                </div>
+
+                <!-- About Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">About Our Blog</h3>
+                    <p>Our hospital blog provides reliable health information, medical news, and wellness tips from our team of healthcare professionals. Our mission is to empower our community with knowledge to make informed health decisions.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Stay updated with the latest health news, medical tips, and hospital updates delivered directly to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MediAssist Hospital</h4>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1985.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Maternity Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>📍 123 Health Street, Medical City</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>✉️ info@mediassist.com</li>
+                        <li>🕒 Mon-Fri: 8am-6pm, Sat: 9am-1pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MediAssist Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Make the logo clickable and redirect to home page
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

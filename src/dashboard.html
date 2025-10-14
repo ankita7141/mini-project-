@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Fit Dashboard </title>
+    <style>
+         :root {
+            --bg: #f6f9fb;
+            --card: #ffffff;
+            --muted: #98a6b3;
+            --accent: #2d9cdb;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 6px 20px rgba(27, 38, 59, 0.08);
+            --radius: 14px;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #e9f3fb 0%, var(--bg) 60%);
+            color: #123;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 32px;
+        }
+        
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1100px;
+            margin: 0 auto 28px;
+            gap: 16px;
+            background-color: #7ea9c6d6;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #37a3e8, #2b7fd0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: white
+        }
+        
+        nav {
+            display: flex;
+            gap: 14px;
+            align-items: center
+        }
+        
+        nav a {
+            color: rgba(10, 30, 50, 0.7);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.6)
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 8px;
+        }
+        
+        header.main {
+            text-align: center;
+            margin: 20px 0 28px
+        }
+        
+        header.main h1 {
+            margin: 4px 0 6px;
+            font-size: 28px;
+            color: #0b4e7a
+        }
+        
+        header.main p {
+            margin: 0;
+            color: var(--muted)
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            flex-wrap: wrap
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow);
+            min-height: 200px;
+            position: relative;
+            overflow: hidden
+        }
+        
+        .card .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px
+        }
+        
+        .card .title h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #0b4e7a
+        }
+        
+        .card .title span {
+            font-size: 13px;
+            color: var(--muted)
+        }
+        
+        .big-metric {
+            font-size: 28px;
+            letter-spacing: 6px;
+            color: #2b7fd0;
+            text-align: center;
+            margin: 12px 0
+        }
+        
+        .sub-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px
+        }
+        
+        .sub {
+            font-size: 13px;
+            color: var(--muted);
+            text-align: center
+        }
+        
+        .sub strong {
+            display: block;
+            color: #0b4e7a;
+            font-size: 14px;
+            margin-top: 6px
+        }
+        
+        .progress-wrap {
+            height: 8px;
+            background: #eef4f8;
+            border-radius: 10px;
+            margin-top: 8px
+        }
+        
+        .progress {
+            height: 8px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #2d9cdb, #6bc1ff);
+            width: 0%
+        }
+        
+        .connect {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px
+        }
+        
+        .btn {
+            background: linear-gradient(180deg, #2e98db, #2b7fd0);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(43, 127, 208, 0.28)
+        }
+        
+        .dashes {
+            letter-spacing: 14px;
+            color: #2b7fd0;
+            font-weight: 700
+        }
+        
+        @media (max-width:920px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .topbar,
+            .container {
+                padding: 0 14px
+            }
+        }
+        
+        .note {
+            max-width: 1100px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="brand">
+
+            <div class="logo">
+                <a href="./index.html">MH</a>
+            </div>
+            <div>
+                <div style="font-weight:700;color:#0b4e7a">Mediassist</div>
+                <div style="font-size:12px;color:#123">Health Portal</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <header class="main">
+            <h1>Google Fit Dashboard</h1>
+            <p>View your health and fitness data from Google Fit</p>
+        </header>
+
+        <div class="grid">
+            <section class="card">
+                <div class="title">
+                    <h3>Activity</h3><span>Today</span></div>
+                <div class="big-metric dashes">--</div>
+                <div class="progress-wrap" aria-hidden>
+                    <div class="progress" style="width:0%"></div>
+                </div>
+                <div class="sub-metrics">
+                    <div class="sub">
+                        <div>Steps</div><strong>0</strong></div>
+                    <div class="sub">
+                        <div>Distance (km)</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>Calories</div><strong>--</strong></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="title">
+                    <h3>Heart</h3><span>Today</span></div>
+                <div class="big-metric dashes">--</div>
+                <div style="display:flex;justify-content:space-around;margin-top:10px">
+                    <div class="sub">
+                        <div>Current BPM</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>Resting BPM</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>HRV (ms)</div><strong>--</strong></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="title">
+                    <h3>Sleep</h3><span>Last Night</span></div>
+                <div class="big-metric dashes">--</div>
+                <div class="progress-wrap">
+                    <div class="progress" style="width:0%"></div>
+                </div>
+                <div style="margin-top:14px;text-align:center;color:var(--muted)">Hours</div>
+            </section>
+
+            <!-- New Card 1 -->
+            <section class="card">
+                <div class="title">
+                    <h3>Weight</h3><span>Today</span></div>
+                <div class="big-metric dashes">--</div>
+                <div class="sub-metrics">
+                    <div class="sub">
+                        <div>Current (kg)</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>BMI</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>Target</div><strong>--</strong></div>
+                </div>
+            </section>
+
+            <!-- New Card 2 -->
+            <section class="card">
+                <div class="title">
+                    <h3>Nutrition</h3><span>Today</span></div>
+                <div class="big-metric dashes">--</div>
+                <div class="sub-metrics">
+                    <div class="sub">
+                        <div>Calories</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>Protein (g)</div><strong>--</strong></div>
+                    <div class="sub">
+                        <div>Carbs (g)</div><strong>--</strong></div>
+                </div>
+            </section>
+
+            <!-- New Card 3 -->
+            <section class="card">
+                <div class="title">
+                    <h3>Water Intake</h3><span>Today</span></div>
+                <div class="big-metric dashes">--</div>
+                <div class="progress-wrap">
+                    <div class="progress" style="width:0%"></div>
+                </div>
+                <div style="margin-top:14px;text-align:center;color:var(--muted)">Liters</div>
+            </section>
+        </div>
+
+        <div class="connect">
+            <button class="btn">Connect Google Fit</button>
+        </div>
+
+    </div>
+
+    <div class="note">This static mockup now includes 6 cards: Activity, Heart, Sleep, Weight, Nutrition, and Water Intake.</div>
+</body>
+
+</html>

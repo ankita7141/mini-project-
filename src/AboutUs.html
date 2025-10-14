@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MediAssist Hospital</title>
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #1b4d90;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Header Styles */
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2d8a47;
+            color: white;
+        }
+        /* About Sections */
+        
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--gray);
+        }
+        /* Mission/Vision/Values */
+        
+        .mv-section {
+            background-color: white;
+            padding: 60px 0;
+        }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .mv-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .mv-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .mv-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        /* History Section */
+        
+        .history-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd):after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even):after {
+            left: -10px;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Stats Section */
+        
+        .stats-section {
+            background: linear-gradient(rgba(26, 115, 232, 0.9), rgba(26, 115, 232, 0.9)), url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-card {
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 18px;
+        }
+        /* Leadership Section */
+        
+        .leadership-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 18px;
+        }
+        
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .team-role {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .team-bio {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        /* CTA Section */
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav ul li {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+            .timeline:before {
+                left: 30px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item:after {
+                left: 20px !important;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <span class="logo-icon">🏥</span>
+                    <h1>MediAssist Hospital</h1>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>info@mediassist.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>About MediAssist Hospital</h2>
+            <p>For over three decades, we've been providing exceptional healthcare with compassion, innovation, and excellence.</p>
+            <a href="#history" class="btn">Our Story</a>
+        </div>
+    </section>
+
+    <!-- Mission, Vision, Values -->
+    <section class="mv-section">
+        <div class="container">
+            <h2 class="section-title">Our Foundation</h2>
+            <p class="section-subtitle">Guided by our core principles, we strive to deliver the highest standard of care to every patient.</p>
+
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To provide compassionate, accessible, and high-quality healthcare to our community through innovation, education, and exceptional patient experiences.</p>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">👁️</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading healthcare institution recognized for clinical excellence, patient-centered care, and medical innovation that transforms lives.</p>
+                </div>
+
+                <div class="mv-card">
+                    <div class="mv-icon">❤️</div>
+                    <h3>Our Values</h3>
+                    <p>Compassion, Integrity, Excellence, Collaboration, and Innovation guide every decision we make and every patient we serve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="history-section">
+        <div class="container">
+            <h2 class="section-title">Our Journey</h2>
+            <p class="section-subtitle">From a small community clinic to a leading healthcare institution</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1985</div>
+                    <div class="timeline-content">
+                        <h3>Foundation</h3>
+                        <p>MediAssist Hospital was founded by Dr. Robert Johnson with a vision to provide comprehensive healthcare to the growing community.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1995</div>
+                    <div class="timeline-content">
+                        <h3>Expansion</h3>
+                        <p>Added a new wing with advanced surgical suites and a dedicated maternity ward, doubling our capacity to serve patients.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2005</div>
+                    <div class="timeline-content">
+                        <h3>Technology Advancement</h3>
+                        <p>Became one of the first hospitals in the region to implement electronic health records and telemedicine capabilities.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h3>Recognition</h3>
+                        <p>Received the National Quality Healthcare Award for excellence in patient care and safety standards.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>Pandemic Response</h3>
+                        <p>Established a specialized COVID-19 response unit and implemented innovative safety protocols to protect patients and staff.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <h3>Future Vision</h3>
+                        <p>Launching our new Center for Medical Innovation focused on research and cutting-edge treatments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">By The Numbers</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-text">Patients Treated Annually</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-text">Specialized Physicians</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">38</div>
+                    <div class="stat-text">Years of Service</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-text">Medical Departments</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-text">Emergency Care</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership Team</h2>
+            <p class="section-subtitle">Meet the dedicated professionals guiding our hospital's mission and vision</p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">Dr. Sarah Mitchell</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Dr. Sarah Mitchell</h3>
+                        <div class="team-role">Chief Medical Officer</div>
+                        <p class="team-bio">Board-certified surgeon with over 20 years of experience in healthcare leadership and patient care innovation.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">Michael Chen</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Michael Chen</h3>
+                        <div class="team-role">Hospital Administrator</div>
+                        <p class="team-bio">Healthcare management expert focused on operational excellence and patient experience enhancement.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">Dr. James Wilson</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Dr. James Wilson</h3>
+                        <div class="team-role">Head of Cardiology</div>
+                        <p class="team-bio">Renowned cardiologist and researcher with numerous publications in cardiovascular medicine.</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">Emily Rodriguez</div>
+                    <div class="team-info">
+                        <h3 class="team-name">Emily Rodriguez</h3>
+                        <div class="team-role">Director of Nursing</div>
+                        <p class="team-bio">Dedicated to nursing excellence and staff development with 25 years of clinical experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience Exceptional Care?</h2>
+            <p>Join the thousands of patients who trust MediAssist Hospital with their health and wellbeing.</p>
+            <a href="contact.html" class="btn">Schedule an Appointment</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MediAssist Hospital</h4>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1985.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Maternity Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>📍 123 Health Street, Medical City</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>✉️ info@mediassist.com</li>
+                        <li>🕒 Mon-Fri: 8am-6pm, Sat: 9am-1pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MediAssist Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Make the logo clickable and redirect to home page
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

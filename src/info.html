@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info & Help - MediAssist Hospital</title>
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #164485;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Header Styles */
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2d8a47;
+            color: white;
+        }
+        /* Info Sections */
+        
+        .info-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            margin: 10px auto;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h3 i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card ul li:before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+        /* Emergency Info */
+        
+        .emergency-info {
+            background-color: #ffebee;
+            border-left: 5px solid #e53935;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .emergency-info h3 {
+            color: #e53935;
+            margin-bottom: 10px;
+        }
+        /* FAQ Section */
+        
+        .faq-section {
+            background-color: white;
+            padding: 60px 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background-color: var(--light);
+            padding: 15px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        /* Contact Form */
+        
+        .contact-section {
+            padding: 60px 0;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav ul li {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <!-- MediAssist Logo -->
+                    <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="80" rx="10" fill="#1a73e8" />
+                        <circle cx="50" cy="40" r="15" fill="white" />
+                        <path d="M35 60 L65 60 L65 80 L35 80 Z" fill="white" />
+                        <path d="M45 60 L45 70 L55 70 L55 60" fill="#1a73e8" />
+                        <text x="50" y="95" text-anchor="middle" fill="white" font-size="12" font-weight="bold">MediAssist</text>
+                    </svg>
+                    <h1>MediAssist Hospital</h1>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>info@mediassist.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Information & Help Center</h2>
+            <p>Find answers to your questions, get assistance, and access important information about our hospital services and facilities.</p>
+            <a href="#contact" class="btn">Get Help Now</a>
+        </div>
+    </section>
+
+    <!-- Quick Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Quick Information</h2>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📅 Appointment Scheduling</h3>
+                    <p>Book, reschedule or cancel appointments with our specialists.</p>
+                    <ul>
+                        <li>Online booking available 24/7</li>
+                        <li>Phone scheduling: Mon-Fri, 8am-6pm</li>
+                        <li>Same-day appointments when available</li>
+                        <li>Specialist referral coordination</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🏥 Visiting Hours & Policies</h3>
+                    <p>Information for visitors and patient companions.</p>
+                    <ul>
+                        <li>General visiting: 10am-8pm daily</li>
+                        <li>ICU visiting: Limited to immediate family</li>
+                        <li>Children under 12: Limited hours</li>
+                        <li>Overnight stays: Case-by-case approval</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>💰 Billing & Insurance</h3>
+                    <p>Understanding costs and payment options.</p>
+                    <ul>
+                        <li>Insurance verification</li>
+                        <li>Payment plans available</li>
+                        <li>Financial assistance programs</li>
+                        <li>Online bill pay</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🚗 Parking & Directions</h3>
+                    <p>Navigate to our facility with ease.</p>
+                    <ul>
+                        <li>Free patient/visitor parking</li>
+                        <li>Valet service available</li>
+                        <li>Shuttle from transit center</li>
+                        <li>Accessible parking close to entrances</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>🍽 Patient Services</h3>
+                    <p>Comfort and convenience during your stay.</p>
+                    <ul>
+                        <li>Room service dining</li>
+                        <li>WiFi throughout facility</li>
+                        <li>Interpreter services</li>
+                        <li>Spiritual care</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>📄 Medical Records</h3>
+                    <p>Access your health information.</p>
+                    <ul>
+                        <li>Online patient portal</li>
+                        <li>Request records in person or by mail</li>
+                        <li>Authorization required for release</li>
+                        <li>Typically processed within 3-5 days</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="emergency-info">
+                <h3>🚨 Emergency Information</h3>
+                <p>Our Emergency Department is open 24/7 for urgent medical needs. For life-threatening emergencies, call 911 immediately.</p>
+                <p><strong>Emergency Department:</strong> (555) 123-EMER (3637)</p>
+                <p><strong>Location:</strong> Use the dedicated Emergency entrance on the west side of the building.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I prepare for my surgery?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Your surgeon will provide specific instructions, but general guidelines include:</p>
+                    <ul>
+                        <li>Do not eat or drink after midnight before your surgery (unless instructed otherwise)</li>
+                        <li>Arrange for someone to drive you home after the procedure</li>
+                        <li>Wear comfortable, loose-fitting clothing</li>
+                        <li>Leave valuables at home</li>
+                        <li>Bring your insurance card and photo ID</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What insurance plans do you accept?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept most major insurance plans, including:</p>
+                    <ul>
+                        <li>Blue Cross Blue Shield</li>
+                        <li>Aetna</li>
+                        <li>Cigna</li>
+                        <li>UnitedHealthcare</li>
+                        <li>Medicare</li>
+                        <li>Medicaid</li>
+                    </ul>
+                    <p>Please contact our billing department at (555) 123-BILL to verify your specific coverage.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can I access my test results?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Test results are typically available through our patient portal within 3-5 business days. For urgent results, your provider will contact you directly. If you need assistance accessing the portal, please call our medical records department
+                        at (555) 123-RECS.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What COVID-19 safety measures are in place?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We continue to follow CDC guidelines to ensure patient and staff safety:</p>
+                    <ul>
+                        <li>Enhanced cleaning protocols throughout the facility</li>
+                        <li>Mask requirements in clinical areas</li>
+                        <li>Social distancing in waiting areas</li>
+                        <li>Visitor restrictions when necessary</li>
+                        <li>Virtual visit options for appropriate appointments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I transfer medical records to MediAssist?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>To transfer your medical records to us, you'll need to:</p>
+                    <ol>
+                        <li>Complete an Authorization for Release of Health Information form</li>
+                        <li>Provide the complete name and address of your previous provider</li>
+                        <li>Submit the form to our Health Information Management department</li>
+                    </ol>
+                    <p>Forms are available at our reception desk or can be downloaded from our website.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Need More Help?</h2>
+            <p style="text-align: center; margin-bottom: 30px;">If you couldn't find the information you need, please contact us directly.</p>
+
+            <div class="contact-form">
+                <form id="helpForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" class="form-control" required>
+                            <option value="">Select a topic</option>
+                            <option value="appointment">Appointment Scheduling</option>
+                            <option value="billing">Billing & Insurance</option>
+                            <option value="medical-records">Medical Records</option>
+                            <option value="visitor-info">Visitor Information</option>
+                            <option value="feedback">Feedback & Complaints</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MediAssist Hospital</h4>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1985.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Orthopedics</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Maternity Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>📍 123 Health Street, Medical City</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>✉️ info@mediassist.com</li>
+                        <li>🕒 Mon-Fri: 8am-6pm, Sat: 9am-1pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MediAssist Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Make the logo clickable and redirect to home page
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+
+                // Change the icon
+                const icon = question.querySelector('span:last-child');
+                icon.textContent = item.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Form submission
+        document.getElementById('helpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. We will respond within 24 hours.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
