@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Health & NCC Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #3498db;
+            --primary-light: #e1f0fa;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1.5rem 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            margin-top: 1rem;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--white);
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .section-header i {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .quiz-container,
+        .timer-container,
+        .calculator-container {
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .question {
+            margin-bottom: 1.5rem;
+        }
+        
+        .options label {
+            display: block;
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .options label:hover {
+            background: var(--light);
+        }
+        
+        .timer-display {
+            font-size: 3rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius);
+        }
+        
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .checklist {
+            list-style-type: none;
+        }
+        
+        .checklist li {
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        .checklist li.checked:before {
+            content: "☑";
+            color: var(--secondary);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 150px;
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+        
+        .download-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .download-link {
+            background: var(--primary-light);
+            padding: 1rem;
+            border-radius: var(--radius);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .download-link i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .medicine-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .reminder-list {
+            margin-top: 1.5rem;
+        }
+        
+        .reminder-item {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .alert {
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: var(--radius);
+            margin: 1rem 0;
+            display: none;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style-type: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            .nav-tabs {
+                justify-content: center;
+            }
+            .calculator-form,
+            .medicine-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h1>Student Health & NCC Portal</h1>
+            </div>
+            <div class="nav-tabs">
+                <div class="tab active" data-tab="health">Student Health</div>
+                <div class="tab" data-tab="ncc">NCC Resources</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Student Health Tab -->
+        <div id="health" class="tab-content active">
+            <!-- Mental Health Quiz Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-brain"></i>
+                    <h2>Mental Health Quiz</h2>
+                </div>
+                <p>Take this quick assessment to understand your current mental wellbeing.</p>
+
+                <div class="quiz-container">
+                    <div id="quiz-questions">
+                        <div class="question" id="question-1">
+                            <h3>Question 1: How often have you felt stressed or anxious in the past week?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="q1" value="0"> Rarely or never</label>
+                                <label><input type="radio" name="q1" value="1"> Occasionally</label>
+                                <label><input type="radio" name="q1" value="2"> Frequently</label>
+                                <label><input type="radio" name="q1" value="3"> Almost constantly</label>
+                            </div>
+                        </div>
+
+                        <div class="question" id="question-2" style="display: none;">
+                            <h3>Question 2: How would you rate your sleep quality over the past week?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="q2" value="0"> Very good</label>
+                                <label><input type="radio" name="q2" value="1"> Fairly good</label>
+                                <label><input type="radio" name="q2" value="2"> Fairly poor</label>
+                                <label><input type="radio" name="q2" value="3"> Very poor</label>
+                            </div>
+                        </div>
+
+                        <div class="question" id="question-3" style="display: none;">
+                            <h3>Question 3: How often have you felt motivated and energetic recently?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="q3" value="3"> Most of the time</label>
+                                <label><input type="radio" name="q3" value="2"> About half the time</label>
+                                <label><input type="radio" name="q3" value="1"> Occasionally</label>
+                                <label><input type="radio" name="q3" value="0"> Rarely or never</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-results" style="display: none;">
+                        <h3>Your Mental Health Assessment</h3>
+                        <p id="result-text"></p>
+                        <button class="btn" id="retake-quiz">Retake Quiz</button>
+                    </div>
+
+                    <button class="btn" id="next-question">Next Question</button>
+                    <button class="btn" id="submit-quiz" style="display: none;">Submit Quiz</button>
+                </div>
+            </section>
+
+            <!-- Sleep & Diet Tips Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-bed"></i>
+                    <h2>Sleep & Diet Tips</h2>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Healthy Sleep Habits</h3>
+                        <ul class="checklist">
+                            <li>Maintain a consistent sleep schedule</li>
+                            <li>Create a relaxing bedtime routine</li>
+                            <li>Avoid screens 1 hour before bed</li>
+                            <li>Keep your bedroom dark and cool</li>
+                            <li>Avoid caffeine after 2 PM</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Balanced Diet for Students</h3>
+                        <ul class="checklist">
+                            <li>Eat breakfast every day</li>
+                            <li>Include protein in each meal</li>
+                            <li>Stay hydrated with water</li>
+                            <li>Limit processed foods and sugar</li>
+                            <li>Eat fruits and vegetables daily</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Energy-Boosting Foods</h3>
+                        <ul class="checklist">
+                            <li>Oats and whole grains</li>
+                            <li>Nuts and seeds</li>
+                            <li>Leafy green vegetables</li>
+                            <li>Berries and citrus fruits</li>
+                            <li>Lean proteins</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Relaxation Timer Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-hourglass-half"></i>
+                    <h2>Relaxation Timer</h2>
+                </div>
+                <p>Use this timer for focused study sessions (Pomodoro technique) or relaxation exercises.</p>
+
+                <div class="timer-container">
+                    <div class="timer-display" id="timer">25:00</div>
+                    <div class="timer-controls">
+                        <button class="btn" id="start-timer">Start</button>
+                        <button class="btn" id="pause-timer">Pause</button>
+                        <button class="btn" id="reset-timer">Reset</button>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <label for="timer-type">Timer Type:</label>
+                        <select id="timer-type">
+                            <option value="25">Study Session (25 min)</option>
+                            <option value="5">Short Break (5 min)</option>
+                            <option value="15">Long Break (15 min)</option>
+                            <option value="10">Deep Breathing (10 min)</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Medicine Reminder Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-pills"></i>
+                    <h2>Medicine Reminder</h2>
+                </div>
+                <p>Set reminders for your medications (reminders will only work during current browser session).</p>
+
+                <div class="medicine-form">
+                    <div class="form-group">
+                        <label for="med-name">Medicine Name</label>
+                        <input type="text" id="med-name" placeholder="e.g., Vitamin C">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-time">Time</label>
+                        <input type="time" id="med-time">
+                    </div>
+                    <div class="form-group">
+                        <label for="med-frequency">Frequency</label>
+                        <select id="med-frequency">
+                            <option value="once">Once a day</option>
+                            <option value="twice">Twice a day</option>
+                            <option value="thrice">Three times a day</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn" id="add-reminder">Add Reminder</button>
+
+                <div class="alert" id="reminder-alert"></div>
+
+                <div class="reminder-list" id="reminder-list">
+                    <!-- Reminders will be added here -->
+                </div>
+            </section>
+
+            <!-- Health Awareness Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-eye"></i>
+                    <h2>Health Awareness</h2>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Eye Strain Prevention</h3>
+                        <p>Tips to reduce digital eye strain:</p>
+                        <ul class="checklist">
+                            <li>Follow the 20-20-20 rule (every 20 minutes, look at something 20 feet away for 20 seconds)</li>
+                            <li>Adjust screen brightness to match your surroundings</li>
+                            <li>Position screen at arm's length and slightly below eye level</li>
+                            <li>Use artificial tears if eyes feel dry</li>
+                            <li>Blink frequently</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Posture Correction</h3>
+                        <p>Maintain proper posture while studying:</p>
+                        <ul class="checklist">
+                            <li>Sit with back straight and shoulders back</li>
+                            <li>Keep feet flat on the floor</li>
+                            <li>Position screen at eye level</li>
+                            <li>Take regular breaks to stretch</li>
+                            <li>Use a chair with good lumbar support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Health Resources</h3>
+                <div class="download-links">
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Healthy Diet Chart</h4>
+                        <p>PDF - 250 KB</p>
+                        <button class="btn">Download</button>
+                    </div>
+
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Yoga Guide for Students</h4>
+                        <p>PDF - 1.2 MB</p>
+                        <button class="btn">Download</button>
+                    </div>
+
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Sleep Hygiene Guide</h4>
+                        <p>PDF - 800 KB</p>
+                        <button class="btn">Download</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hygiene Checklist Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-soap"></i>
+                    <h2>Hygiene Checklist</h2>
+                </div>
+                <p>Self-check: Are you maintaining good hygiene in hostel?</p>
+
+                <div class="card">
+                    <h3>Daily Hygiene Checklist</h3>
+                    <ul class="checklist" id="hygiene-checklist">
+                        <li>Brush teeth twice daily</li>
+                        <li>Take a bath/shower</li>
+                        <li>Wear clean clothes</li>
+                        <li>Wash hands before meals</li>
+                        <li>Keep room tidy and ventilated</li>
+                        <li>Wash fruits before eating</li>
+                        <li>Trim nails regularly</li>
+                        <li>Change bed sheets weekly</li>
+                    </ul>
+                    <button class="btn" id="reset-checklist">Reset Checklist</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- NCC Resources Tab -->
+        <div id="ncc" class="tab-content">
+            <!-- Fitness Test Checklist Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-running"></i>
+                    <h2>Fitness Test Checklist</h2>
+                </div>
+                <p>Track your NCC training progress with this checklist.</p>
+
+                <div class="card">
+                    <h3>NCC Fitness Assessment</h3>
+                    <ul class="checklist" id="fitness-checklist">
+                        <li>1.6 km run (timed)</li>
+                        <li>Push-ups (maximum in 2 minutes)</li>
+                        <li>Sit-ups (maximum in 2 minutes)</li>
+                        <li>Chin-ups (maximum)</li>
+                        <li>Standing long jump</li>
+                        <li>Rope climbing</li>
+                        <li>Balance beam walk</li>
+                        <li>Obstacle course completion</li>
+                    </ul>
+                    <button class="btn" id="reset-fitness-checklist">Reset Checklist</button>
+                </div>
+            </section>
+
+            <!-- BMR & Calorie Calculator Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-calculator"></i>
+                    <h2>BMR & Calorie Calculator</h2>
+                </div>
+                <p>Calculate your Basal Metabolic Rate and daily calorie needs for optimal training performance.</p>
+
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" min="15" max="60" value="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" min="30" max="150" value="65">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" min="100" max="250" value="170">
+                        </div>
+                        <div class="form-group">
+                            <label for="activity">Activity Level</label>
+                            <select id="activity">
+                                <option value="1.2">Sedentary (little or no exercise)</option>
+                                <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+                                <option value="1.55">Moderately active (moderate exercise 3-5 days/week)</option>
+                                <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                                <option value="1.9">Extra active (very hard exercise, physical job)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" id="calculate-bmr">Calculate</button>
+
+                    <div class="result" id="bmr-result">
+                        Your results will appear here
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mental Strength Quiz Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-brain"></i>
+                    <h2>Mental Strength Quiz</h2>
+                </div>
+                <p>Assess your mental resilience with this NCC-focused quiz.</p>
+
+                <div class="quiz-container">
+                    <div id="ncc-quiz-questions">
+                        <div class="question" id="ncc-question-1">
+                            <h3>Question 1: How do you typically respond to unexpected challenges?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="ncc-q1" value="0"> Feel overwhelmed and anxious</label>
+                                <label><input type="radio" name="ncc-q1" value="1"> Take time to process before acting</label>
+                                <label><input type="radio" name="ncc-q1" value="2"> See it as an opportunity to grow</label>
+                                <label><input type="radio" name="ncc-q1" value="3"> Immediately start problem-solving</label>
+                            </div>
+                        </div>
+
+                        <div class="question" id="ncc-question-2" style="display: none;">
+                            <h3>Question 2: How do you handle criticism or feedback?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="ncc-q2" value="0"> Take it personally and feel discouraged</label>
+                                <label><input type="radio" name="ncc-q2" value="1"> Consider it but may feel defensive</label>
+                                <label><input type="radio" name="ncc-q2" value="2"> Actively seek to understand and improve</label>
+                                <label><input type="radio" name="ncc-q2" value="3"> Welcome it as essential for growth</label>
+                            </div>
+                        </div>
+
+                        <div class="question" id="ncc-question-3" style="display: none;">
+                            <h3>Question 3: When facing a difficult task, what's your approach?</h3>
+                            <div class="options">
+                                <label><input type="radio" name="ncc-q3" value="3"> Break it down into manageable steps</label>
+                                <label><input type="radio" name="ncc-q3" value="2"> Focus on the end goal to stay motivated</label>
+                                <label><input type="radio" name="ncc-q3" value="1"> Seek help and collaboration</label>
+                                <label><input type="radio" name="ncc-q3" value="0"> Procrastinate or avoid it</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ncc-quiz-results" style="display: none;">
+                        <h3>Your Mental Strength Assessment</h3>
+                        <p id="ncc-result-text"></p>
+                        <button class="btn" id="retake-ncc-quiz">Retake Quiz</button>
+                    </div>
+
+                    <button class="btn" id="ncc-next-question">Next Question</button>
+                    <button class="btn" id="ncc-submit-quiz" style="display: none;">Submit Quiz</button>
+                </div>
+            </section>
+
+            <!-- Balanced Diet for Cadets Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-utensils"></i>
+                    <h2>Balanced Diet for Cadets</h2>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Protein-Rich Foods</h3>
+                        <ul class="checklist">
+                            <li>Eggs and lean meats</li>
+                            <li>Fish and seafood</li>
+                            <li>Dairy products (milk, yogurt, paneer)</li>
+                            <li>Legumes (beans, lentils, chickpeas)</li>
+                            <li>Nuts and seeds</li>
+                            <li>Soy products (tofu, tempeh)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Energy Foods for Training</h3>
+                        <ul class="checklist">
+                            <li>Whole grains (oats, brown rice)</li>
+                            <li>Sweet potatoes</li>
+                            <li>Bananas and other fruits</li>
+                            <li>Energy bars (homemade preferred)</li>
+                            <li>Dried fruits and nuts mix</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Hydration Tips</h3>
+                        <ul class="checklist">
+                            <li>Drink water throughout the day</li>
+                            <li>Consume electrolyte drinks during intense training</li>
+                            <li>Monitor urine color (light yellow is ideal)</li>
+                            <li>Avoid excessive caffeine</li>
+                            <li>Include water-rich foods (cucumber, watermelon)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weekly Training Planner Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>Weekly Training Planner</h2>
+                </div>
+                <p>Create your personalized NCC training schedule.</p>
+
+                <div class="card">
+                    <h3>My Training Week</h3>
+                    <div class="form-group">
+                        <label for="training-focus">Training Focus for This Week</label>
+                        <select id="training-focus">
+                            <option value="endurance">Endurance Building</option>
+                            <option value="strength">Strength Training</option>
+                            <option value="drill">Drill Practice</option>
+                            <option value="mixed">Mixed Training</option>
+                        </select>
+                    </div>
+
+                    <div id="training-schedule">
+                        <div class="form-group">
+                            <label for="monday">Monday</label>
+                            <input type="text" id="monday" placeholder="e.g., 5km run, push-ups">
+                        </div>
+                        <div class="form-group">
+                            <label for="tuesday">Tuesday</label>
+                            <input type="text" id="tuesday" placeholder="e.g., Drill practice, strength training">
+                        </div>
+                        <div class="form-group">
+                            <label for="wednesday">Wednesday</label>
+                            <input type="text" id="wednesday" placeholder="e.g., Rest or light activity">
+                        </div>
+                        <div class="form-group">
+                            <label for="thursday">Thursday</label>
+                            <input type="text" id="thursday" placeholder="e.g., Obstacle course, team sports">
+                        </div>
+                        <div class="form-group">
+                            <label for="friday">Friday</label>
+                            <input type="text" id="friday" placeholder="e.g., Long run, flexibility exercises">
+                        </div>
+                        <div class="form-group">
+                            <label for="saturday">Saturday</label>
+                            <input type="text" id="saturday" placeholder="e.g., Field training, map reading">
+                        </div>
+                        <div class="form-group">
+                            <label for="sunday">Sunday</label>
+                            <input type="text" id="sunday" placeholder="e.g., Active recovery, planning">
+                        </div>
+                    </div>
+
+                    <button class="btn" id="save-schedule">Save Schedule</button>
+                    <button class="btn" id="print-schedule">Print Schedule</button>
+                </div>
+            </section>
+
+            <!-- NCC Resources Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-download"></i>
+                    <h2>NCC Handbook & Resources</h2>
+                </div>
+                <p>Download official NCC materials and resources.</p>
+
+                <div class="download-links">
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>NCC Handbook</h4>
+                        <p>PDF - 2.5 MB</p>
+                        <button class="btn">Download</button>
+                    </div>
+
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Drill Manual</h4>
+                        <p>PDF - 1.8 MB</p>
+                        <button class="btn">Download</button>
+                    </div>
+
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Map Reading Guide</h4>
+                        <p>PDF - 1.2 MB</p>
+                        <button class="btn">Download</button>
+                    </div>
+
+                    <div class="download-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>First Aid Manual</h4>
+                        <p>PDF - 3.1 MB</p>
+                        <button class="btn">Download</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Posture Awareness Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-user"></i>
+                    <h2>Posture Awareness Guide</h2>
+                </div>
+                <p>Maintain proper posture for parade and daily activities.</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Standing Posture (Attention)</h3>
+                        <ul class="checklist">
+                            <li>Heels together, feet at 45° angle</li>
+                            <li>Knees straight but not locked</li>
+                            <li>Shoulders back and down</li>
+                            <li>Chest lifted, chin parallel to ground</li>
+                            <li>Arms straight, thumbs along trouser seams</li>
+                            <li>Weight evenly distributed on both feet</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Marching Posture</h3>
+                        <ul class="checklist">
+                            <li>Maintain upright posture while moving</li>
+                            <li>Swing arms 6 inches to front and 3 inches to rear</li>
+                            <li>Step length of 30 inches</li>
+                            <li>Lift feet about 6 inches off the ground</li>
+                            <li>Keep head and eyes forward</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hygiene for Camps Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-campground"></i>
+                    <h2>Hygiene for Camps</h2>
+                </div>
+                <p>Special care for hygiene during field conditions and camps.</p>
+
+                <div class="card">
+                    <h3>Camp Hygiene Checklist</h3>
+                    <ul class="checklist">
+                        <li>Always use purified/boiled water for drinking</li>
+                        <li>Wash hands with soap before handling food</li>
+                        <li>Keep eating utensils clean and covered</li>
+                        <li>Dispose of waste properly, away from living areas</li>
+                        <li>Use insect repellent to prevent mosquito bites</li>
+                        <li>Keep nails trimmed and clean</li>
+                        <li>Change into dry clothes if wet from rain or sweat</li>
+                        <li>Use designated toilet areas only</li>
+                        <li>Report any health issues immediately to camp leader</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Achievements Gallery Section -->
+            <section class="section">
+                <div class="section-header">
+                    <i class="fas fa-trophy"></i>
+                    <h2>Achievements Gallery</h2>
+                </div>
+                <p>Celebrating NCC achievements, parades, and awareness camps.</p>
+
+                <div class="gallery">
+                    <div class="gallery-item" style="background: #3498db;">Annual Parade</div>
+                    <div class="gallery-item" style="background: #2ecc71;">Adventure Camp</div>
+                    <div class="gallery-item" style="background: #e74c3c;">Republic Day Camp</div>
+                    <div class="gallery-item" style="background: #f39c12;">Social Service</div>
+                    <div class="gallery-item" style="background: #9b59b6;">Leadership Training</div>
+                    <div class="gallery-item" style="background: #1abc9c;">Award Ceremony</div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Student Health & NCC Portal</h3>
+                <p>Comprehensive health and wellness resources for students and NCC cadets.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Health Resources</a></li>
+                    <li><a href="#">NCC Information</a></li>
+                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a href="#">Campus Health Center</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> University Campus, Health Center Building</p>
+                <p><i class="fas fa-phone"></i> (555) 123-HEAL</p>
+                <p><i class="fas fa-envelope"></i> healthportal@campus.edu</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 6:00 PM</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2023 Student Health & NCC Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Mental Health Quiz
+        let currentQuestion = 1;
+        const totalQuestions = 3;
+        let quizScore = 0;
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestion < totalQuestions) {
+                document.getElementById(`question-${currentQuestion}`).style.display = 'none';
+                currentQuestion++;
+                document.getElementById(`question-${currentQuestion}`).style.display = 'block';
+
+                if (currentQuestion === totalQuestions) {
+                    document.getElementById('next-question').style.display = 'none';
+                    document.getElementById('submit-quiz').style.display = 'inline-block';
+                }
+            }
+        });
+
+        document.getElementById('submit-quiz').addEventListener('click', () => {
+            // Calculate score (simplified)
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+
+            if (q1 && q2 && q3) {
+                quizScore = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
+
+                let resultText = '';
+                if (quizScore <= 3) {
+                    resultText = 'Your mental wellbeing appears to be in good shape. Continue practicing healthy habits!';
+                } else if (quizScore <= 6) {
+                    resultText = 'You\'re experiencing some stress. Consider trying our relaxation techniques and speaking with a counselor if needed.';
+                } else {
+                    resultText = 'You may be experiencing significant stress. We recommend speaking with a mental health professional for support.';
+                }
+
+                document.getElementById('result-text').textContent = resultText;
+                document.getElementById('quiz-questions').style.display = 'none';
+                document.getElementById('quiz-results').style.display = 'block';
+            } else {
+                alert('Please answer all questions before submitting.');
+            }
+        });
+
+        document.getElementById('retake-quiz').addEventListener('click', () => {
+            // Reset quiz
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            document.getElementById('quiz-questions').style.display = 'block';
+            document.getElementById('quiz-results').style.display = 'none';
+            document.getElementById('question-1').style.display = 'block';
+            document.getElementById('question-2').style.display = 'none';
+            document.getElementById('question-3').style.display = 'none';
+            document.getElementById('next-question').style.display = 'inline-block';
+            document.getElementById('submit-quiz').style.display = 'none';
+            currentQuestion = 1;
+            quizScore = 0;
+        });
+
+        // NCC Mental Strength Quiz
+        let nccCurrentQuestion = 1;
+        const nccTotalQuestions = 3;
+        let nccQuizScore = 0;
+
+        document.getElementById('ncc-next-question').addEventListener('click', () => {
+            if (nccCurrentQuestion < nccTotalQuestions) {
+                document.getElementById(`ncc-question-${nccCurrentQuestion}`).style.display = 'none';
+                nccCurrentQuestion++;
+                document.getElementById(`ncc-question-${nccCurrentQuestion}`).style.display = 'block';
+
+                if (nccCurrentQuestion === nccTotalQuestions) {
+                    document.getElementById('ncc-next-question').style.display = 'none';
+                    document.getElementById('ncc-submit-quiz').style.display = 'inline-block';
+                }
+            }
+        });
+
+        document.getElementById('ncc-submit-quiz').addEventListener('click', () => {
+            // Calculate score (simplified)
+            const q1 = document.querySelector('input[name="ncc-q1"]:checked');
+            const q2 = document.querySelector('input[name="ncc-q2"]:checked');
+            const q3 = document.querySelector('input[name="ncc-q3"]:checked');
+
+            if (q1 && q2 && q3) {
+                nccQuizScore = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
+
+                let resultText = '';
+                if (nccQuizScore <= 3) {
+                    resultText = 'You have developing mental resilience. Focus on building coping strategies and seeking support when needed.';
+                } else if (nccQuizScore <= 6) {
+                    resultText = 'You demonstrate good mental strength. Continue developing your resilience through challenging experiences.';
+                } else {
+                    resultText = 'You show strong mental resilience! Your approach to challenges will serve you well in NCC and beyond.';
+                }
+
+                document.getElementById('ncc-result-text').textContent = resultText;
+                document.getElementById('ncc-quiz-questions').style.display = 'none';
+                document.getElementById('ncc-quiz-results').style.display = 'block';
+            } else {
+                alert('Please answer all questions before submitting.');
+            }
+        });
+
+        document.getElementById('retake-ncc-quiz').addEventListener('click', () => {
+            // Reset quiz
+            document.querySelectorAll('input[name^="ncc-q"]').forEach(radio => radio.checked = false);
+            document.getElementById('ncc-quiz-questions').style.display = 'block';
+            document.getElementById('ncc-quiz-results').style.display = 'none';
+            document.getElementById('ncc-question-1').style.display = 'block';
+            document.getElementById('ncc-question-2').style.display = 'none';
+            document.getElementById('ncc-question-3').style.display = 'none';
+            document.getElementById('ncc-next-question').style.display = 'inline-block';
+            document.getElementById('ncc-submit-quiz').style.display = 'none';
+            nccCurrentQuestion = 1;
+            nccQuizScore = 0;
+        });
+
+        // Relaxation Timer
+        let timerInterval;
+        let timerSeconds = 25 * 60; // 25 minutes in seconds
+        let isTimerRunning = false;
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            document.getElementById('timer').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        document.getElementById('timer-type').addEventListener('change', function() {
+            if (!isTimerRunning) {
+                timerSeconds = parseInt(this.value) * 60;
+                updateTimerDisplay();
+            }
+        });
+
+        document.getElementById('start-timer').addEventListener('click', () => {
+            if (!isTimerRunning) {
+                isTimerRunning = true;
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        alert('Timer completed!');
+                    }
+                }, 1000);
+            }
+        });
+
+        document.getElementById('pause-timer').addEventListener('click', () => {
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+            }
+        });
+
+        document.getElementById('reset-timer').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = parseInt(document.getElementById('timer-type').value) * 60;
+            updateTimerDisplay();
+        });
+
+        // Initialize timer display
+        updateTimerDisplay();
+
+        // Medicine Reminder
+        document.getElementById('add-reminder').addEventListener('click', () => {
+            const medName = document.getElementById('med-name').value;
+            const medTime = document.getElementById('med-time').value;
+            const medFrequency = document.getElementById('med-frequency').value;
+
+            if (medName && medTime) {
+                const reminderList = document.getElementById('reminder-list');
+                const reminderItem = document.createElement('div');
+                reminderItem.className = 'reminder-item';
+                reminderItem.innerHTML = `
+                    <div>
+                        <strong>${medName}</strong> - ${medTime} (${medFrequency})
+                    </div>
+                    <button class="btn" onclick="this.parentElement.remove()">Remove</button>
+                `;
+                reminderList.appendChild(reminderItem);
+
+                // Show alert
+                const alert = document.getElementById('reminder-alert');
+                alert.textContent = `Reminder set for ${medName} at ${medTime}`;
+                alert.style.display = 'block';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 3000);
+
+                // Clear form
+                document.getElementById('med-name').value = '';
+                document.getElementById('med-time').value = '';
+                document.getElementById('med-frequency').value = 'once';
+            } else {
+                alert('Please fill in medicine name and time.');
+            }
+        });
+
+        // Hygiene Checklist
+        document.getElementById('hygiene-checklist').addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI') {
+                e.target.classList.toggle('checked');
+            }
+        });
+
+        document.getElementById('reset-checklist').addEventListener('click', () => {
+            document.querySelectorAll('#hygiene-checklist li').forEach(item => {
+                item.classList.remove('checked');
+            });
+        });
+
+        // Fitness Checklist
+        document.getElementById('fitness-checklist').addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI') {
+                e.target.classList.toggle('checked');
+            }
+        });
+
+        document.getElementById('reset-fitness-checklist').addEventListener('click', () => {
+            document.querySelectorAll('#fitness-checklist li').forEach(item => {
+                item.classList.remove('checked');
+            });
+        });
+
+        // BMR Calculator
+        document.getElementById('calculate-bmr').addEventListener('click', () => {
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            // Calculate daily calorie needs
+            const dailyCalories = Math.round(bmr * activity);
+
+            document.getElementById('bmr-result').innerHTML = `
+                Your Basal Metabolic Rate (BMR): <span style="color: var(--primary);">${Math.round(bmr)} calories/day</span><br>
+                Your Daily Calorie Needs: <span style="color: var(--secondary);">${dailyCalories} calories/day</span>
+            `;
+        });
+
+        // Weekly Training Planner
+        document.getElementById('save-schedule').addEventListener('click', () => {
+            alert('Training schedule saved! (Note: This is a demo - data is not actually saved)');
+        });
+
+        document.getElementById('print-schedule').addEventListener('click', () => {
+            window.print();
+        });
+    </script>
+</body>
+
+</html>

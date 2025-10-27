@@ -20,7 +20,12 @@
                     overflow: visible;
                 }
                 
-                .logo img {
+                img {
+                    height: 75px;
+                    width: auto;
+                }
+                
+                .img .logo img {
                     height: 50px;
                     width: auto;
                     border-radius: 8px;
