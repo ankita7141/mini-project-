@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Healthcare Schemes Portal</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* body {
+            background-color: #f5f9fc;
+            color: #333;
+            line-height: 1.6;
+        } */
+        
+        header {
+            /* background: linear-gradient(135deg, #1a6bb3, #0d4d8a); */
+            color: rgb(37, 24, 24);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ff7e5f;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #ff6b4a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .privacy-hero {
+            background: linear-gradient(rgba(13, 77, 138, 0.8), rgba(13, 77, 138, 0.9)), url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .privacy-hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .privacy-content {
+            padding: 4rem 0;
+        }
+        
+        .privacy-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .privacy-section h2 {
+            color: #0d4d8a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ff7e5f;
+            display: inline-block;
+        }
+        
+        .privacy-section h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .privacy-section p {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-section ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .privacy-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #f0f7ff;
+            padding: 1.5rem;
+            border-left: 4px solid #3498db;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .update-info {
+            background-color: #fff8e1;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .contact-privacy {
+            background: linear-gradient(135deg, #1a6bb3, #0d4d8a);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .contact-privacy h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #3498db;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff7e5f;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #ff6b4a;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .privacy-hero h2 {
+                font-size: 2rem;
+            }
+            .privacy-hero p {
+                font-size: 1rem;
+            }
+            .privacy-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <a href="/src/index.html"><img src="/assets/logo.png" alt=""></a>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/index.html">Home Page</a>
+                        <a href="/src/student.html  ">Student & NCC Cadets</a>
+                        <a href="/src/faculty.html">Faculty Utilities</a>
+                        <a href="/src/citizen.html">Citizen Medical Help</a>
+                        <a href="/src/dashboard.html">Google Dashboard</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Services <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/expertise.html">Technology Expertise</a>
+                        <a href="https://pharmeasy.in/#">Buy Medicine</a>
+                        <a href="/src/disease.html">Disease Prediction</a>
+                        <a href="/src/policy.html">Privacy & Police</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">About <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/schemes.html">Schemes</a>
+                        <a href="/src/blog.html">Blogs</a>
+                        <a href="/src/walloflove.html">Wall of Love (Reviews)</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/AboutUs.html">About Us</a>
+                        <a href="https://ehr.meditech.com/careers">Career Opportunities</a>
+                        <a href="/src/contactUs.html">Contact Us</a>
+                        <a href="/src/info.html">Info & Help</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div class="login"><a href="/src/login.html" style="color:inherit;text-decoration:none;">Login</a></div>
+            <button class="emergency-button" onclick="openEmergencyPopup()">
+
+<i class="fas fa-ambulance"></i>
+Emergency
+</button>
+
+            <!-- ✅ Multi-Language Dropdown -->
+            <div class="lang dropdown">
+                <a href="#" style="color: black; text-decoration: none;">EN <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content" style="right:0;left:auto;">
+                    <a href="#" onclick="changeLang('en')">English</a>
+                    <a href="#" onclick="changeLang('hi')">हिन्दी (Hindi)</a>
+                    <a href="#" onclick="changeLang('mr')">मराठी (Marathi)</a>
+                    <a href="#" onclick="changeLang('ta')">தமிழ் (Tamil)</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="privacy-hero">
+        <div class="container">
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.</p>
+        </div>
+    </section>
+
+    <section class="privacy-content">
+        <div class="container">
+            <div class="privacy-section">
+                <h2>Introduction</h2>
+                <p>Welcome to the Healthcare Schemes Portal. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when
+                    you use our website and services.</p>
+
+                <p>Please read this Privacy Policy carefully. By accessing or using our services, you agree to the terms of this Privacy Policy. If you do not agree with the terms, please do not access the website or use our services.</p>
+
+                <div class="highlight">
+                    <p><strong>Last Updated:</strong> October 15, 2023</p>
+                    <p><strong>Effective Date:</strong> October 15, 2023</p>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Information We Collect</h2>
+
+                <h3>Personal Information</h3>
+                <p>We may collect personal information that you voluntarily provide to us when you:</p>
+                <ul>
+                    <li>Register for an account on our portal</li>
+                    <li>Apply for healthcare schemes</li>
+                    <li>Contact us with inquiries</li>
+                    <li>Subscribe to our newsletters</li>
+                    <li>Participate in surveys or feedback</li>
+                </ul>
+
+                <p>This information may include:</p>
+                <ul>
+                    <li>Name, address, and contact details</li>
+                    <li>Date of birth and gender</li>
+                    <li>Identification numbers (as required for scheme applications)</li>
+                    <li>Health information relevant to scheme eligibility</li>
+                    <li>Educational or employment details</li>
+                    <li>Payment information for premium payments</li>
+                </ul>
+
+                <h3>Automatically Collected Information</h3>
+                <p>When you visit our website, we may automatically collect certain information about your device and usage, including:</p>
+                <ul>
+                    <li>IP address and location data</li>
+                    <li>Browser type and version</li>
+                    <li>Operating system</li>
+                    <li>Pages visited and time spent on pages</li>
+                    <li>Referring website addresses</li>
+                    <li>Cookies and similar tracking technologies</li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <h2>How We Use Your Information</h2>
+                <p>We use the information we collect for various purposes, including:</p>
+                <ul>
+                    <li>To process your applications for healthcare schemes</li>
+                    <li>To verify your eligibility for specific schemes</li>
+                    <li>To communicate with you about your applications and accounts</li>
+                    <li>To provide customer support and respond to inquiries</li>
+                    <li>To send important updates about our services</li>
+                    <li>To improve our website and services</li>
+                    <li>To prevent fraud and ensure security</li>
+                    <li>To comply with legal obligations</li>
+                </ul>
+
+                <div class="highlight">
+                    <p><strong>Note:</strong> We do not sell, trade, or rent your personal information to third parties for marketing purposes.</p>
+                </div>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Information Sharing and Disclosure</h2>
+                <p>We may share your information in the following circumstances:</p>
+
+                <h3>With Healthcare Providers</h3>
+                <p>We may share necessary information with healthcare providers and hospitals when you avail of services under our schemes.</p>
+
+                <h3>With Government Agencies</h3>
+                <p>We may disclose information to government agencies as required by law or to verify eligibility for government-sponsored schemes.</p>
+
+                <h3>With Service Providers</h3>
+                <p>We may share information with trusted third-party service providers who assist us in operating our website and providing services, subject to confidentiality agreements.</p>
+
+                <h3>For Legal Compliance</h3>
+                <p>We may disclose information when required by law, court order, or governmental regulations.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Data Security</h2>
+                <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+                <ul>
+                    <li>Encryption of sensitive data</li>
+                    <li>Secure servers and network infrastructure</li>
+                    <li>Regular security assessments and updates</li>
+                    <li>Access controls and authentication procedures</li>
+                    <li>Employee training on data protection</li>
+                </ul>
+
+                <p>While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. Therefore, we cannot guarantee absolute security.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Your Rights and Choices</h2>
+                <p>You have certain rights regarding your personal information, including:</p>
+                <ul>
+                    <li><strong>Access:</strong> You can request access to the personal information we hold about you.</li>
+                    <li><strong>Correction:</strong> You can request correction of inaccurate or incomplete information.</li>
+                    <li><strong>Deletion:</strong> You can request deletion of your personal information, subject to legal obligations.</li>
+                    <li><strong>Objection:</strong> You can object to certain processing of your information.</li>
+                    <li><strong>Restriction:</strong> You can request restriction of processing in certain circumstances.</li>
+                    <li><strong>Portability:</strong> You can request a copy of your information in a structured, machine-readable format.</li>
+                </ul>
+
+                <p>To exercise these rights, please contact us using the information provided in the "Contact Us" section.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar tracking technologies to enhance your experience on our website. Cookies are small text files stored on your device that help us:</p>
+                <ul>
+                    <li>Remember your preferences and settings</li>
+                    <li>Understand how you use our website</li>
+                    <li>Improve our services and user experience</li>
+                    <li>Provide personalized content</li>
+                </ul>
+
+                <p>You can control cookies through your browser settings. However, disabling cookies may limit your ability to use certain features of our website.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Third-Party Links</h2>
+                <p>Our website may contain links to third-party websites. This Privacy Policy applies only to our website and services. We are not responsible for the privacy practices or content of third-party websites. We encourage you to review the privacy
+                    policies of any third-party sites you visit.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Children's Privacy</h2>
+                <p>Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have collected personal information from a child under 16, we will take
+                    steps to delete such information.</p>
+            </div>
+
+            <div class="privacy-section">
+                <h2>Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by posting the updated policy on our website with a new effective date. We encourage
+                    you to review this Privacy Policy periodically.</p>
+
+                <div class="update-info">
+                    <p><strong>Notification of Changes:</strong> If we make significant changes to how we handle personal information, we may provide additional notice, such as via email or a prominent notice on our website.</p>
+                </div>
+            </div>
+
+            <div class="contact-privacy">
+                <h2>Contact Us</h2>
+                <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+                <p>Email: privacy@healthcareschemes.com</p>
+                <p>Phone: +1 234 567 8900</p>
+                <p>Address: 123 Health Street, Medical City</p>
+                <a href="index.html#contact" class="btn">Contact Form</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Healthcare Schemes</h3>
+                    <ul>
+                        <li><a href="index.html#schemes">College Students</a></li>
+                        <li><a href="index.html#schemes">NCC Cadets</a></li>
+                        <li><a href="index.html#schemes">Faculty Members</a></li>
+                        <li><a href="index.html#schemes">General Citizens</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@healthcareschemes.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Healthcare Schemes Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

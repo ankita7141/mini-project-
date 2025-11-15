@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Medical Help - MedAssist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #1a73e8;
+            --primary-dark: #0b4e7a;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            /* background: linear-gradient(135deg, var(--primary), var(--primary-dark)); */
+            color: var(--dark);
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn.active {
+            background: var(--white);
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .section-header i {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hospital-card {
+            background: var(--white);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hospital-info h4 {
+            margin-bottom: 0.3rem;
+        }
+        
+        .hospital-info p {
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: #27ae60;
+        }
+        
+        .tool-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        
+        .tool-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .first-aid-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .first-aid-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .first-aid-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .emergency-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid var(--accent);
+        }
+        
+        .emergency-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        
+        .elderly-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tip-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+        
+        .scheme-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius);
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .announcement {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius);
+        }
+        
+        .download-section {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: var(--radius);
+            margin-top: 2rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .close-modal {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style-type: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <a href="/src/index.html"><img src="/assets/logo.png" alt=""></a>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/index.html">Home Page</a>
+                        <a href="/src/student.html">Student & NCC Cadets</a>
+                        <a href="/src/faculty.html">Faculty Utilities</a>
+                        <a href="/src/citizen.html">Citizen Medical Help</a>
+                        <a href="/src/dashboard.html">Google Dashboard</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Services <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/expertise.html">Technology Expertise</a>
+                        <a href="https://pharmeasy.in/#">Buy Medicine</a>
+                        <a href="/src/disease.html">Disease Prediction</a>
+                        <a href="/src/policy.html">Privacy & Police</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">About <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/schemes.html">Schemes</a>
+                        <a href="/src/blog.html">Blogs</a>
+                        <a href="/src/walloflove.html">Wall of Love (Reviews)</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/AboutUs.html">About Us</a>
+                        <a href="https://ehr.meditech.com/careers">Career Opportunities</a>
+                        <a href="/src/contactUs.html">Contact Us</a>
+                        <a href="/src/info.html">Info & Help</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div class="login"><a href="/src/login.html" style="color:inherit;text-decoration:none;">Login</a></div>
+            <button class="emergency-button" onclick="openEmergencyPopup()">
+
+<i class="fas fa-ambulance"></i>
+Emergency
+</button>
+
+            <!-- ✅ Multi-Language Dropdown -->
+            <div class="lang dropdown">
+                <a href="#" style="color: #2c3e50;text-decoration: none;">EN <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content" style="right:0;left:auto;">
+                    <a href="#" onclick="changeLang('en')">English</a>
+                    <a href="#" onclick="changeLang('hi')">हिन्दी (Hindi)</a>
+                    <a href="#" onclick="changeLang('mr')">मराठी (Marathi)</a>
+                    <a href="#" onclick="changeLang('ta')">தமிழ் (Tamil)</a>
+                </div>
+            </div>
+        </nav>
+
+
+
+    </header>
+
+    <div class="container">
+        <!-- Nearby Hospitals Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-hospital"></i>
+                <h2>Nearby Hospitals</h2>
+            </div>
+            <p>Find healthcare facilities near you with emergency services.</p>
+
+            <div class="hospital-card">
+                <div class="hospital-info">
+                    <h4>City General Hospital</h4>
+                    <p>123 Medical Road, Civil Lines, Pune</p>
+                    <p>24/7 Emergency & Trauma Center</p>
+                    <a href="tel:+911234567890" class="contact-btn">
+                        <i class="fas fa-phone"></i> Call: +91 12345 67890
+                    </a>
+                </div>
+            </div>
+
+            <div class="hospital-card">
+                <div class="hospital-info">
+                    <h4>Medicare Multi-speciality Hospital</h4>
+                    <p>456 Health Avenue, Kothrud, Pune</p>
+                    <p>Cardiology, Neurology & ICU Facilities</p>
+                    <a href="tel:+911234567891" class="contact-btn">
+                        <i class="fas fa-phone"></i> Call: +91 12345 67891
+                    </a>
+                </div>
+            </div>
+
+            <div class="hospital-card">
+                <div class="hospital-info">
+                    <h4>Public Health Center</h4>
+                    <p>789 Wellness Street, Hadapsar, Pune</p>
+                    <p>Free OPD & Vaccination Services</p>
+                    <a href="tel:+911234567892" class="contact-btn">
+                        <i class="fas fa-phone"></i> Call: +91 12345 67892
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Health Tools Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-tools"></i>
+                <h2>Quick Health Tools</h2>
+            </div>
+            <p>Use these self-assessment tools to understand your health better.</p>
+
+            <div class="card-grid">
+                <div class="card tool-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Heart Disease Checker</h3>
+                    <p>Assess your risk factors for heart conditions</p>
+                    <a href="#" class="btn">Check Now</a>
+                </div>
+
+                <div class="card tool-card">
+                    <i class="fas fa-syringe"></i>
+                    <h3>Diabetes Risk Estimator</h3>
+                    <p>Evaluate your diabetes risk based on lifestyle</p>
+                    <a href="#" class="btn">Check Now</a>
+                </div>
+
+                <div class="card tool-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Eye Test (Color Blindness)</h3>
+                    <p>Simple color vision assessment test</p>
+                    <a href="#" class="btn">Take Test</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic First Aid Info Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-first-aid"></i>
+                <h2>Basic First Aid Information</h2>
+            </div>
+            <p>Essential first aid steps for common emergencies.</p>
+
+            <div class="first-aid-grid">
+                <div class="first-aid-card">
+                    <i class="fas fa-fire"></i>
+                    <h3>Burns</h3>
+                    <p>Cool the burn with running water for 10-15 minutes. Cover with sterile dressing.</p>
+                </div>
+
+                <div class="first-aid-card">
+                    <i class="fas fa-lungs"></i>
+                    <h3>Choking</h3>
+                    <p>Perform abdominal thrusts (Heimlich maneuver) if conscious. Call for emergency help.</p>
+                </div>
+
+                <div class="first-aid-card">
+                    <i class="fas fa-strikethrough"></i>
+                    <h3>Snakebite</h3>
+                    <p>Keep the person calm and immobilized. Do not cut the wound or try to suck out venom.</p>
+                </div>
+
+                <div class="first-aid-card">
+                    <i class="fas fa-car-crash"></i>
+                    <h3>Road Accident</h3>
+                    <p>Check for danger first. Do not move the injured unless necessary. Call emergency services.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Contacts Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-phone-alt"></i>
+                <h2>Emergency Contacts</h2>
+            </div>
+            <p>Important emergency numbers for immediate assistance.</p>
+
+            <div class="emergency-grid">
+                <div class="emergency-card">
+                    <i class="fas fa-ambulance"></i>
+                    <h3>Medical Emergency</h3>
+                    <div class="emergency-number">108</div>
+                    <p>24/7 Ambulance Service</p>
+                </div>
+
+                <div class="emergency-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Police</h3>
+                    <div class="emergency-number">100</div>
+                    <p>Police Emergency</p>
+                </div>
+
+                <div class="emergency-card">
+                    <i class="fas fa-fire-extinguisher"></i>
+                    <h3>Fire Department</h3>
+                    <div class="emergency-number">101</div>
+                    <p>Fire Emergency</p>
+                </div>
+
+                <div class="emergency-card">
+                    <i class="fas fa-female"></i>
+                    <h3>Women Helpline</h3>
+                    <div class="emergency-number">1091</div>
+                    <p>Women in Distress</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- For Elderly & Children Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-child"></i>
+                <h2>For Elderly & Children</h2>
+            </div>
+            <p>Special healthcare tips for vulnerable age groups.</p>
+
+            <div class="elderly-tips">
+                <div class="tip-card">
+                    <h3>Hydration Tips</h3>
+                    <p>Elderly should drink at least 8 glasses of water daily. Children need frequent hydration during play.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>Medication Reminders</h3>
+                    <p>Use pill organizers and set alarms. Never skip prescribed medications.</p>
+                </div>
+
+                <div class="tip-card">
+                    <h3>Vaccination Schedule</h3>
+                    <p>Follow the national immunization schedule for children. Elderly should get flu and pneumonia vaccines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Camp Announcements -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-bullhorn"></i>
+                <h2>Health Camp Announcements</h2>
+            </div>
+
+            <div class="announcement">
+                <h3>Free Health Check-up Camp</h3>
+                <p><strong>Date:</strong> 15th November 2023</p>
+                <p><strong>Location:</strong> Community Hall, Kothrud, Pune</p>
+                <p><strong>Services:</strong> BP check, sugar test, eye examination, doctor consultation</p>
+            </div>
+
+            <div class="announcement">
+                <h3>Vaccination Drive</h3>
+                <p><strong>Date:</strong> 20th November 2023</p>
+                <p><strong>Location:</strong> Public Health Center, Hadapsar, Pune</p>
+                <p><strong>Vaccines:</strong> Flu vaccine, COVID-19 booster, Child immunization</p>
+            </div>
+        </section>
+
+        <!-- Government Schemes -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-file-medical"></i>
+                <h2>Government Health Schemes</h2>
+            </div>
+            <p>Healthcare programs available for citizens.</p>
+
+            <div class="scheme-card">
+                <h3>Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY)</h3>
+                <p>Provides health coverage of ₹5 lakh per family per year for secondary and tertiary care hospitalization.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+
+            <div class="scheme-card">
+                <h3>Mahatma Jyotiba Phule Jan Arogya Yojana</h3>
+                <p>Maharashtra state health insurance scheme offering cashless treatment for eligible families.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Bed Booking System -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-bed"></i>
+                <h2>Hospital Bed Booking</h2>
+            </div>
+            <p>Check availability and book hospital beds (Mock UI).</p>
+
+            <div class="booking-form">
+                <div class="form-group">
+                    <label for="hospital">Select Hospital</label>
+                    <select id="hospital">
+                        <option value="">Choose a hospital</option>
+                        <option value="city-general">City General Hospital</option>
+                        <option value="medicare">Medicare Multi-speciality Hospital</option>
+                        <option value="public-health">Public Health Center</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bed-type">Bed Type</label>
+                    <select id="bed-type">
+                        <option value="">Select bed type</option>
+                        <option value="general">General Ward</option>
+                        <option value="semi-private">Semi-Private</option>
+                        <option value="private">Private Room</option>
+                        <option value="icu">ICU</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" id="patient-name" placeholder="Enter patient name">
+                </div>
+
+                <div class="form-group">
+                    <label for="patient-age">Patient Age</label>
+                    <input type="number" id="patient-age" placeholder="Enter age">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="medical-condition">Medical Condition</label>
+                    <input type="text" id="medical-condition" placeholder="Brief description of condition">
+                </div>
+            </div>
+
+            <button class="btn" id="check-availability">Check Availability</button>
+        </section>
+
+        <!-- Doctor Appointment Booking -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-calendar-check"></i>
+                <h2>Doctor Appointment Booking</h2>
+            </div>
+            <p>Book appointments with healthcare specialists.</p>
+
+            <div class="booking-form">
+                <div class="form-group">
+                    <label for="specialty">Medical Specialty</label>
+                    <select id="specialty">
+                        <option value="">Select specialty</option>
+                        <option value="general">General Physician</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="gynecology">Gynecology</option>
+                        <option value="dermatology">Dermatology</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="doctor">Select Doctor</label>
+                    <select id="doctor">
+                        <option value="">Choose a doctor</option>
+                        <option value="dr-sharma">Dr. Sharma (General Physician)</option>
+                        <option value="dr-patil">Dr. Patil (Cardiologist)</option>
+                        <option value="dr-deshmukh">Dr. Deshmukh (Orthopedic)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointment-date">Preferred Date</label>
+                    <input type="date" id="appointment-date">
+                </div>
+
+                <div class="form-group">
+                    <label for="appointment-time">Preferred Time</label>
+                    <select id="appointment-time">
+                        <option value="">Select time slot</option>
+                        <option value="morning">Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (2 PM - 5 PM)</option>
+                        <option value="evening">Evening (6 PM - 8 PM)</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="symptoms">Symptoms / Reason for Visit</label>
+                    <input type="text" id="symptoms" placeholder="Describe your symptoms">
+                </div>
+            </div>
+
+            <button class="btn" id="book-appointment">Book Appointment</button>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+            <h3>Download Health Information Guide</h3>
+            <p>Get our comprehensive PDF with all health tips, emergency contacts, and first aid information.</p>
+            <button class="btn">Download PDF</button>
+        </section>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3>Booking Confirmed!</h3>
+            <p id="confirmation-message">Your booking has been successfully submitted. You will receive a confirmation shortly.</p>
+            <button class="close-modal" id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MedAssist</h3>
+                <p>Your trusted partner in healthcare access and information.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Health Tools</a></li>
+                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a href="#">First Aid</a></li>
+                    <li><a href="#">Government Schemes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Pune, Maharashtra</p>
+                <p><i class="fas fa-phone"></i> +91 12345 67890</p>
+                <p><i class="fas fa-envelope"></i> info@medassist.com</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2023 MedAssist. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language switcher
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                // In a real implementation, this would change the language
+                alert('Language changed to ' + button.textContent);
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('confirmation-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        document.getElementById('check-availability').addEventListener('click', () => {
+            document.getElementById('confirmation-message').textContent =
+                "Your bed availability request has been submitted. We'll contact you shortly with available options.";
+            modal.style.display = 'flex';
+        });
+
+        document.getElementById('book-appointment').addEventListener('click', () => {
+            document.getElementById('confirmation-message').textContent =
+                "Your appointment request has been submitted. You'll receive a confirmation call within 2 hours.";
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

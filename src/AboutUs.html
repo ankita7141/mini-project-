@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - MediAssist Hospital</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta name="Google" content="notranslate">
     <style>
         /* Reset and Base Styles */
         
@@ -486,24 +490,75 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-top">
-                <div class="logo" onclick="window.location.href='index.html'">
-                    <span class="logo-icon">🏥</span>
-                    <h1>MediAssist Hospital</h1>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📞</span>
-                        <span>+1 (555) 123-4567</span>
+        <nav>
+
+            <a href="/src/index.html"><img src="/assets/logo.png" alt=""></a>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/index.html">Home Page</a>
+                        <a href="/src/student.html">Student & NCC Cadets</a>
+                        <a href="/src/faculty.html">Faculty Utilities</a>
+                        <a href="/src/citizen.html">Citizen Medical Help</a>
+                        <a href="/src/dashboard.html">Google Dashboard</a>
                     </div>
-                    <div class="contact-item">
-                        <span>✉️</span>
-                        <span>info@mediassist.com</span>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Services <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/expertise.html">Technology Expertise</a>
+                        <a href="https://pharmeasy.in/#">Buy Medicine</a>
+                        <a href="/src/disease.html">Disease Prediction</a>
+                        <a href="/src/policy.html">Privacy & Police</a>
                     </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">About <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/schemes.html">Schemes</a>
+                        <a href="/src/blog.html">Blogs</a>
+                        <a href="/src/walloflove.html">Wall of Love (Reviews)</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/AboutUs.html">About Us</a>
+                        <a href="https://ehr.meditech.com/careers">Career Opportunities</a>
+                        <a href="/src/contactUs.html">Contact Us</a>
+                        <a href="/src/info.html">Info & Help</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div class="login"><a href="/src/login.html" style="color:inherit;text-decoration:none;">Login</a></div>
+            <button class="emergency-button" onclick="openEmergencyPopup()">
+
+<i class="fas fa-ambulance"></i>
+Emergency
+</button>
+
+            <!-- ✅ Multi-Language Dropdown -->
+            <div class="lang dropdown">
+                <a href="#" style="color: #202124;">EN <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content" style="right:0;left:auto;">
+                    <a href="#" onclick="changeLang('en')">English</a>
+                    <a href="#" onclick="changeLang('hi')">हिन्दी (Hindi)</a>
+                    <a href="#" onclick="changeLang('mr')">मराठी (Marathi)</a>
+                    <a href="#" onclick="changeLang('ta')">தமிழ் (Tamil)</a>
                 </div>
             </div>
-        </div>
+        </nav>
+
 
     </header>
 

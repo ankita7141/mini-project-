@@ -1,121 +1,17 @@
- body {
+ * {
      margin: 0;
-     font-family: Arial, sans-serif;
-     background: #e8f3f9;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ body {
+     background: linear-gradient(135deg, #e8f3f9 0%, #d1e7f5 100%);
      display: flex;
      justify-content: center;
      align-items: center;
-     height: 100vh;
- }
- 
- .container {
-     display: flex;
-     background: #fff;
-     border-radius: 12px;
-     overflow: hidden;
-     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-     max-width: 900px;
-     width: 100%;
- }
- 
- .left {
-     flex: 1;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     background: #f9f9f9;
- }
- 
- .left img {
-     max-width: 100%;
-     height: auto;
- }
- 
- .right {
-     flex: 1;
-     padding: 40px;
- }
- 
- .right h2 {
-     margin: 0 0 10px;
-     font-size: 24px;
-     font-weight: bold;
- }
- 
- .right p {
-     margin: 0 0 20px;
-     color: #666;
-     font-size: 14px;
- }
- 
- .google-btn {
-     display: block;
-     width: 100%;
-     padding: 12px;
-     background: #1a73e8;
-     color: #fff;
-     border: none;
-     border-radius: 6px;
-     font-size: 14px;
-     cursor: pointer;
-     margin-bottom: 15px;
- }
- 
- .or {
-     text-align: center;
-     color: #999;
-     margin: 10px 0;
- }
- 
- .form-group {
-     margin-bottom: 15px;
- }
- 
- .form-group label {
-     display: block;
-     margin-bottom: 6px;
-     font-size: 14px;
- }
- 
- .form-group input {
-     width: 100%;
-     padding: 10px;
-     border: 1px solid #ccc;
-     border-radius: 6px;
-     font-size: 14px;
- }
- 
- .forgot {
-     display: block;
-     text-align: right;
-     font-size: 13px;
-     color: #007bff;
-     text-decoration: none;
-     margin-bottom: 15px;
- }
- 
- .login-btn {
-     display: block;
-     width: 100%;
-     padding: 12px;
-     background: #007bff;
-     color: #fff;
-     border: none;
-     border-radius: 6px;
-     font-size: 14px;
-     cursor: pointer;
- }
- 
- .signup {
-     text-align: center;
-     margin-top: 15px;
-     font-size: 13px;
- }
- 
- .signup a {
-     color: #007bff;
-     text-decoration: none;
-     font-weight: bold;
+     min-height: 100vh;
+     padding: 20px;
  }
  
  .topbar {
@@ -125,7 +21,10 @@
      max-width: 1100px;
      margin: 0 auto 28px;
      gap: 16px;
-     background-color: #7ea9c6d6;
+     background: linear-gradient(135deg, #1a73e8 0%, #0b4e7a 100%);
+     padding: 15px 30px;
+     border-radius: 12px;
+     box-shadow: 0 4px 12px rgba(11, 78, 122, 0.2);
  }
  
  .brand {
@@ -135,19 +34,266 @@
  }
  
  .logo {
-     width: 44px;
-     height: 44px;
-     border-radius: 10px;
-     background: linear-gradient(135deg, #37a3e8, #2b7fd0);
+     width: 50px;
+     height: 50px;
+     border-radius: 12px;
+     background: linear-gradient(135deg, #ffffff, #e8f3f9);
      display: flex;
      align-items: center;
      justify-content: center;
-     color: white;
+     color: #0b4e7a;
      font-weight: 700;
-     font-size: 18px
+     font-size: 20px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
  }
  
  .logo a {
      text-decoration: none;
-     color: white
+     color: #0b4e7a;
+ }
+ 
+ .brand-text {
+     color: white;
+ }
+ 
+ .brand-name {
+     font-weight: 700;
+     font-size: 22px;
+ }
+ 
+ .brand-tagline {
+     font-size: 13px;
+     opacity: 0.9;
+ }
+ 
+ .container {
+     display: flex;
+     background: #fff;
+     border-radius: 16px;
+     overflow: hidden;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+     max-width: 950px;
+     width: 100%;
+ }
+ 
+ .left {
+     flex: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: linear-gradient(135deg, #1a73e8 0%, #0b4e7a 100%);
+     padding: 30px;
+     position: relative;
+     overflow: hidden;
+ }
+ 
+ .left::before {
+     content: "";
+     position: absolute;
+     top: -50px;
+     right: -50px;
+     width: 150px;
+     height: 150px;
+     border-radius: 50%;
+     background: rgba(255, 255, 255, 0.1);
+ }
+ 
+ .left::after {
+     content: "";
+     position: absolute;
+     bottom: -80px;
+     left: -80px;
+     width: 200px;
+     height: 200px;
+     border-radius: 50%;
+     background: rgba(255, 255, 255, 0.1);
+ }
+ 
+ .left img {
+     max-width: 100%;
+     height: auto;
+     border-radius: 8px;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+     z-index: 1;
+     position: relative;
+ }
+ 
+ .right {
+     flex: 1;
+     padding: 50px 40px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+ }
+ 
+ .right h2 {
+     margin: 0 0 10px;
+     font-size: 28px;
+     font-weight: 700;
+     color: #0b4e7a;
+ }
+ 
+ .right p {
+     margin: 0 0 25px;
+     color: #666;
+     font-size: 15px;
+ }
+ 
+ .google-btn {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     padding: 14px;
+     background: white;
+     color: #444;
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     font-size: 15px;
+     font-weight: 500;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+ }
+ 
+ .google-btn:hover {
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-color: #bbb;
+ }
+ 
+ .google-btn i {
+     margin-right: 10px;
+     font-size: 18px;
+     color: #1a73e8;
+ }
+ 
+ .or {
+     text-align: center;
+     color: #999;
+     margin: 20px 0;
+     position: relative;
+ }
+ 
+ .or::before {
+     content: "";
+     position: absolute;
+     top: 50%;
+     left: 0;
+     right: 0;
+     height: 1px;
+     background: #eee;
+ }
+ 
+ .or span {
+     background: white;
+     padding: 0 15px;
+     position: relative;
+ }
+ 
+ .form-group {
+     margin-bottom: 20px;
+ }
+ 
+ .form-group label {
+     display: block;
+     margin-bottom: 8px;
+     font-size: 14px;
+     font-weight: 500;
+     color: #444;
+ }
+ 
+ .form-group input {
+     width: 100%;
+     padding: 14px;
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     font-size: 15px;
+     transition: all 0.3s ease;
+ }
+ 
+ .form-group input:focus {
+     outline: none;
+     border-color: #1a73e8;
+     box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+ }
+ 
+ .forgot {
+     display: block;
+     text-align: right;
+     font-size: 14px;
+     color: #1a73e8;
+     text-decoration: none;
+     margin-bottom: 25px;
+     transition: color 0.2s ease;
+ }
+ 
+ .forgot:hover {
+     color: #0b4e7a;
+     text-decoration: underline;
+ }
+ 
+ .login-btn {
+     display: block;
+     width: 100%;
+     padding: 14px;
+     background: linear-gradient(135deg, #1a73e8 0%, #0b4e7a 100%);
+     color: #fff;
+     border: none;
+     border-radius: 8px;
+     font-size: 16px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     box-shadow: 0 4px 10px rgba(11, 78, 122, 0.3);
+ }
+ 
+ .login-btn:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 6px 15px rgba(11, 78, 122, 0.4);
+ }
+ 
+ .signup {
+     text-align: center;
+     margin-top: 25px;
+     font-size: 14px;
+     color: #666;
+ }
+ 
+ .signup a {
+     color: #1a73e8;
+     text-decoration: none;
+     font-weight: 600;
+     transition: color 0.2s ease;
+ }
+ 
+ .signup a:hover {
+     color: #0b4e7a;
+     text-decoration: underline;
+ }
+ /* Responsive Design */
+ 
+ @media (max-width: 768px) {
+     .container {
+         flex-direction: column;
+         max-width: 450px;
+     }
+     .left {
+         padding: 30px;
+         min-height: 200px;
+     }
+     .left img {
+         max-width: 70%;
+     }
+     .right {
+         padding: 40px 30px;
+     }
+ }
+ 
+ @media (max-width: 480px) {
+     .right {
+         padding: 30px 20px;
+     }
+     .topbar {
+         padding: 12px 20px;
+     }
  }

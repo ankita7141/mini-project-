@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction - MediAssist Hospital</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            /* --primary: #1a73e8; */
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --warning: #ea4335;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        /* body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        } */
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        /* Header Styles */
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            /* background-color: var(--primary); */
+        }
+        
+        nav ul li {
+            padding: 15px 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li.active {
+            background-color: var(--secondary);
+        }
+        /* Hero Section */
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2d8a47;
+            color: white;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        /* Warning Banner */
+        
+        .warning-banner {
+            background-color: #ffebee;
+            border-left: 5px solid var(--warning);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-banner h3 {
+            color: var(--warning);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Prediction Tools Section */
+        
+        .tools-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            margin: 10px auto;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .tool-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .tool-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        /* Symptom Checker */
+        
+        .symptom-section {
+            background-color: white;
+            padding: 60px 0;
+        }
+        
+        .symptom-checker {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        select.form-control {
+            height: 46px;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        /* Results Section */
+        
+        .results-section {
+            padding: 60px 0;
+            display: none;
+        }
+        
+        .results-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .risk-level {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .risk-low {
+            background-color: #e6f4ea;
+            color: var(--secondary);
+            border-left: 5px solid var(--secondary);
+        }
+        
+        .risk-medium {
+            background-color: #fef7e0;
+            color: var(--accent);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .risk-high {
+            background-color: #fce8e6;
+            color: var(--warning);
+            border-left: 5px solid var(--warning);
+        }
+        
+        .recommendations {
+            margin-top: 30px;
+        }
+        
+        .recommendations h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .recommendations ul {
+            padding-left: 20px;
+        }
+        
+        .recommendations li {
+            margin-bottom: 10px;
+        }
+        /* Health Calculators */
+        
+        .calculators-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .calculator {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .calculator h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .calculator-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        /* Footer */
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav ul li {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+
+            <a href="/src/index.html"><img src="/assets/logo.png" alt=""></a>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Home <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/index.html">Home Page</a>
+                        <a href="/src/student.html">Student & NCC Cadets</a>
+                        <a href="/src/faculty.html">Faculty Utilities</a>
+                        <a href="/src/citizen.html">Citizen Medical Help</a>
+                        <a href="/src/dashboard.html">Google Dashboard</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Services <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/expertise.html">Technology Expertise</a>
+                        <a href="https://pharmeasy.in/#">Buy Medicine</a>
+                        <a href="/src/disease.html">Disease Prediction</a>
+                        <a href="/src/policy.html">Privacy & Police</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">About <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/schemes.html">Schemes</a>
+                        <a href="/src/blog.html">Blogs</a>
+                        <a href="/src/walloflove.html">Wall of Love (Reviews)</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/src/AboutUs.html">About Us</a>
+                        <a href="https://ehr.meditech.com/careers">Career Opportunities</a>
+                        <a href="/src/contactUs.html">Contact Us</a>
+                        <a href="/src/info.html">Info & Help</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div class="login"><a href="/src/login.html" style="color:inherit;text-decoration:none;">Login</a></div>
+            <button class="emergency-button" onclick="openEmergencyPopup()">
+
+<i class="fas fa-ambulance"></i>
+Emergency
+</button>
+
+            <!-- ✅ Multi-Language Dropdown -->
+            <div class="lang dropdown">
+                <a href="#">EN <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content" style="right:0;left:auto;">
+                    <a href="#" onclick="changeLang('en')">English</a>
+                    <a href="#" onclick="changeLang('hi')">हिन्दी (Hindi)</a>
+                    <a href="#" onclick="changeLang('mr')">मराठी (Marathi)</a>
+                    <a href="#" onclick="changeLang('ta')">தமிழ் (Tamil)</a>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>AI-Powered Disease Prediction</h2>
+            <p>Use our advanced symptom checker and health assessment tools to identify potential health risks and get personalized recommendations.</p>
+            <a href="#symptom-checker" class="btn">Check Symptoms</a>
+            <a href="#health-calculators" class="btn btn-outline">Health Calculators</a>
+        </div>
+    </section>
+
+    <!-- Warning Banner -->
+    <section class="container">
+        <div class="warning-banner">
+            <h3>⚠️ Important Medical Disclaimer</h3>
+            <p>This tool is for informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding
+                a medical condition.</p>
+        </div>
+    </section>
+
+    <!-- Prediction Tools -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Health Assessment Tools</h2>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🤒</div>
+                    <h3>Symptom Checker</h3>
+                    <p>Enter your symptoms to get possible conditions and recommendations.</p>
+                    <a href="#symptom-checker" class="btn">Start Assessment</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">❤️</div>
+                    <h3>Heart Disease Risk</h3>
+                    <p>Assess your risk factors for cardiovascular diseases.</p>
+                    <a href="#health-calculators" class="btn">Check Risk</a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🩺</div>
+                    <h3>Diabetes Screening</h3>
+                    <p>Evaluate your risk for type 2 diabetes based on lifestyle factors.</p>
+                    <a href="#health-calculators" class="btn">Screen Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Symptom Checker -->
+    <section id="symptom-checker" class="symptom-section">
+        <div class="container">
+            <h2 class="section-title">Symptom Checker</h2>
+
+            <div class="symptom-checker">
+                <form id="symptomForm">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" class="form-control" min="1" max="120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" class="form-control" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Symptoms (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fever" value="fever">
+                                <label for="fever">Fever</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="headache" value="headache">
+                                <label for="headache">Headache</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cough" value="cough">
+                                <label for="cough">Cough</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="fatigue" value="fatigue">
+                                <label for="fatigue">Fatigue</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nausea" value="nausea">
+                                <label for="nausea">Nausea</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chest-pain" value="chest-pain">
+                                <label for="chest-pain">Chest Pain</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="shortness-breath" value="shortness-breath">
+                                <label for="shortness-breath">Shortness of Breath</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dizziness" value="dizziness">
+                                <label for="dizziness">Dizziness</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="abdominal-pain" value="abdominal-pain">
+                                <label for="abdominal-pain">Abdominal Pain</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="joint-pain" value="joint-pain">
+                                <label for="joint-pain">Joint Pain</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="symptom-duration">How long have you had these symptoms?</label>
+                        <select id="symptom-duration" class="form-control" required>
+                            <option value="">Select Duration</option>
+                            <option value="less-day">Less than a day</option>
+                            <option value="1-3-days">1-3 days</option>
+                            <option value="4-7-days">4-7 days</option>
+                            <option value="1-2-weeks">1-2 weeks</option>
+                            <option value="more-2-weeks">More than 2 weeks</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="severity">How severe are your symptoms?</label>
+                        <select id="severity" class="form-control" required>
+                            <option value="">Select Severity</option>
+                            <option value="mild">Mild - Doesn't interfere with daily activities</option>
+                            <option value="moderate">Moderate - Some interference with daily activities</option>
+                            <option value="severe">Severe - Significant interference with daily activities</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Analyze Symptoms</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section">
+        <div class="container">
+            <h2 class="section-title">Assessment Results</h2>
+
+            <div class="results-card">
+                <div id="risk-level" class="risk-level">
+                    <!-- Risk level will be inserted here -->
+                </div>
+
+                <div id="possible-conditions">
+                    <!-- Possible conditions will be inserted here -->
+                </div>
+
+                <div class="recommendations">
+                    <h3>Recommended Actions</h3>
+                    <ul id="recommendations-list">
+                        <!-- Recommendations will be inserted here -->
+                    </ul>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <p><strong>Remember:</strong> This is not a medical diagnosis. Please consult with a healthcare professional for proper evaluation.</p>
+                    <a href="contact.html" class="btn" style="margin-top: 15px;">Schedule Doctor Appointment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Calculators -->
+    <section id="health-calculators" class="calculators-section">
+        <div class="container">
+            <h2 class="section-title">Health Risk Calculators</h2>
+
+            <!-- BMI Calculator -->
+            <div class="calculator">
+                <h3>Body Mass Index (BMI) Calculator</h3>
+                <form id="bmiForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Calculate BMI</button>
+                </form>
+                <div id="bmi-result" class="calculator-result">
+                    <!-- BMI result will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Heart Disease Risk Calculator -->
+            <div class="calculator">
+                <h3>Heart Disease Risk Assessment</h3>
+                <form id="heartRiskForm">
+                    <div class="form-group">
+                        <label for="heart-age">Age</label>
+                        <input type="number" id="heart-age" class="form-control" min="20" max="79" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cholesterol">Total Cholesterol (mg/dL)</label>
+                        <input type="number" id="cholesterol" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blood-pressure">Blood Pressure (Systolic)</label>
+                        <input type="number" id="blood-pressure" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Do you smoke?</label>
+                        <div>
+                            <input type="radio" id="smoke-yes" name="smoking" value="yes" required>
+                            <label for="smoke-yes">Yes</label>
+                            <input type="radio" id="smoke-no" name="smoking" value="no" style="margin-left: 15px;">
+                            <label for="smoke-no">No</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Assess Heart Risk</button>
+                </form>
+                <div id="heart-risk-result" class="calculator-result">
+                    <!-- Heart risk result will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MediAssist Hospital</h4>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1985.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Doctors</a></li>
+                        <li><a href="#">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Health Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Symptom Checker</a></li>
+                        <li><a href="#">BMI Calculator</a></li>
+                        <li><a href="#">Heart Risk Assessment</a></li>
+                        <li><a href="#">Diabetes Screening</a></li>
+                        <li><a href="#">Health Calculators</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li>📍 123 Health Street, Medical City</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>✉️ info@mediassist.com</li>
+                        <li>🕒 Mon-Fri: 8am-6pm, Sat: 9am-1pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MediAssist Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Make the logo clickable and redirect to home page
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+
+        // Symptom Checker Form Submission
+        document.getElementById('symptomForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form values
+                    const age = parseInt(document.getElementById('age').value);
+                    const gender = document.getElementById('gender').value;
+                    const duration = document.getElementById('symptom-duration').value;
+                    const severity = document.getElementById('severity').value;
+
+                    // Get selected symptoms
+                    const symptoms = [];
+                    document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                        symptoms.push(checkbox.value);
+                    });
+
+                    // Simple symptom analysis (in a real app, this would be more complex)
+                    let riskLevel = 'low';
+                    let conditions = [];
+                    let recommendations = [];
+
+                    // Basic risk assessment logic
+                    if (symptoms.includes('chest-pain') || symptoms.includes('shortness-breath')) {
+                        riskLevel = 'high';
+                        conditions.push('Possible cardiovascular issue');
+                        conditions.push('Respiratory condition');
+                        recommendations.push('Seek immediate medical attention');
+                        recommendations.push('Visit emergency department if symptoms worsen');
+                    } else if (symptoms.length >= 3 && severity === 'severe') {
+                        riskLevel = 'medium';
+                        conditions.push('Possible viral infection');
+                        conditions.push('Inflammatory condition');
+                        recommendations.push('Schedule appointment with primary care physician');
+                        recommendations.push('Rest and stay hydrated');
+                        recommendations.push('Monitor symptoms closely');
+                    } else {
+                        riskLevel = 'low';
+                        conditions.push('Minor illness likely');
+                        recommendations.push('Rest and monitor symptoms');
+                        recommendations.push('Over-the-counter medication may help');
+                        recommendations.push('Contact doctor if symptoms persist beyond 3 days');
+                    }
+
+                    // Add fever-specific conditions
+                    if (symptoms.includes('fever') && symptoms.includes('cough')) {
+                        conditions.push('Possible respiratory infection');
+                    }
+
+                    // Display results
+                    const riskLevelElement = document.getElementById('risk-level');
+                    riskLevelElement.className = 'risk-level risk-' + riskLevel;
+                    riskLevelElement.innerHTML = `<h3>Risk Level: ${riskLevel.toUpperCase()}</h3>`;
+
+                    const conditionsElement = document.getElementById('possible-conditions');
+                    conditionsElement.innerHTML = `
+                <h3>Possible Conditions</h3>
+                <ul>
+                    ${conditions.map(condition => `<li>${condition}</li>`).join('')}
+                </ul>
+            `;
+            
+            const recommendationsElement = document.getElementById('recommendations-list');
+            recommendationsElement.innerHTML = recommendations.map(rec => `<li>${rec}</li>`).join('');
+            
+            // Show results section
+            document.getElementById('results').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // BMI Calculator
+        document.getElementById('bmiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            const bmi = weight / (height * height);
+            let category = '';
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+            } else if (bmi < 25) {
+                category = 'Normal weight';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+            } else {
+                category = 'Obese';
+            }
+            
+            const resultElement = document.getElementById('bmi-result');
+            resultElement.innerHTML = `
+                <p>Your BMI: <strong>${bmi.toFixed(1)}</strong></p>
+                <p>Category: <strong>${category}</strong></p>
+            `;
+            resultElement.style.display = 'block';
+        });
+        
+        // Heart Risk Calculator
+        document.getElementById('heartRiskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const age = parseInt(document.getElementById('heart-age').value);
+            const cholesterol = parseInt(document.getElementById('cholesterol').value);
+            const bloodPressure = parseInt(document.getElementById('blood-pressure').value);
+            const smoking = document.querySelector('input[name="smoking"]:checked').value;
+            
+            // Simple risk calculation (not medically accurate)
+            let riskScore = 0;
+            
+            if (age > 50) riskScore += 2;
+            if (age > 65) riskScore += 1;
+            
+            if (cholesterol > 200) riskScore += 1;
+            if (cholesterol > 240) riskScore += 1;
+            
+            if (bloodPressure > 130) riskScore += 1;
+            if (bloodPressure > 140) riskScore += 1;
+            
+            if (smoking === 'yes') riskScore += 2;
+            
+            let riskLevel = '';
+            if (riskScore <= 2) {
+                riskLevel = 'Low Risk';
+            } else if (riskScore <= 4) {
+                riskLevel = 'Moderate Risk';
+            } else {
+                riskLevel = 'High Risk';
+            }
+            
+            const resultElement = document.getElementById('heart-risk-result');
+            resultElement.innerHTML = `
+                <p>Heart Disease Risk: <strong>${riskLevel}</strong></p>
+                <p>Risk Score: ${riskScore}/7</p>
+            `;
+            resultElement.style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
